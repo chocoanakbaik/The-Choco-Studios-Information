@@ -5,7 +5,7 @@ export const site = {
   email: "thechocostudio@gmail.com",
   chocoAiUrl: "https://choco-ai-platform.netlify.app/",
   helpCenterUrl: "https://choco-ai-help-center.netlify.app/",
-  contactFormUrl: "",
+  contactFormUrl: "https://forms.gle/LUtY9cyFQKVizA1A6",
   languages: {
     primary: "Bahasa Indonesia",
     secondary: "Bahasa Inggris",
