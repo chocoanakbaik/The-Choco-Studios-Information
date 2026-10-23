@@ -1,6 +1,6 @@
 # The Choco Studios Information
 
-Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan JavaScript modular tanpa framework atau proses build.
+Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan JavaScript modular tanpa framework. Build Node.js kecil menyiapkan bundel deploy terpisah agar file dokumentasi internal tidak ikut diterbitkan di Netlify.
 
 ## Struktur proyek
 
@@ -11,6 +11,8 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 ├── favicon.svg
 ├── robots.txt
 ├── _headers
+├── netlify.toml
+├── .gitignore
 ├── package.json
 ├── .github/
 │   └── workflows/
@@ -69,6 +71,7 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 │       ├── legal-licensing.md
 │       └── updates-maintenance.md
 └── scripts/
+    ├── build-site.mjs
     └── validate-site.mjs
 ```
 
@@ -78,6 +81,8 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 - `favicon.svg`: identitas grafis TCS pada tab browser dan daftar bookmark.
 - `404.html`: halaman tidak ditemukan yang berdiri sendiri, dengan navigasi kembali ke beranda dan kanal pelaporan tautan rusak; tidak bergantung pada JavaScript aplikasi.
 - `_headers`: header keamanan dasar untuk deploy Netlify, termasuk MIME sniffing, kebijakan referrer, pencegahan framing, serta pembatasan izin browser.
+- `netlify.toml`: menjalankan `npm run build` dan menetapkan `dist/` sebagai direktori publik.
+- `.gitignore`: mengecualikan output build lokal `dist/` dan keadaan kerja Netlify.
 - `robots.txt`: aturan perayapan dasar untuk halaman publik.
 - `components/`: tiap bagian halaman berada di berkas terpisah; header hanya menyediakan tempat untuk menu dan tombolnya.
 - `assets/css/tokens.css`: warna, ukuran konten, dan token desain.
@@ -98,24 +103,28 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 - `docs/content-plan.md`: backlog konten dan aturan verifikasi.
 - `docs/questions/`: bank pertanyaan terkonfirmasi, pertanyaan tertunda, serta pertanyaan masa depan per bidang.
 - `docs/questionnaire.md`: indeks ke bank pertanyaan.
-- `scripts/validate-site.mjs`: pemeriksaan file wajib, titik pemasangan komponen, ID/anchor dan referensi ARIA, aset lokal, halaman detail tiap produk, impor dan sintaks JavaScript, bentuk data situs/produk, URL konfigurasi, serta tautan relatif dokumentasi.
+- `scripts/build-site.mjs`: membuat `dist/` dengan menyalin hanya aset publik, komponen, data katalog, halaman produk, favicon, halaman 404, robots.txt, dan headers. Dokumen internal, validator, serta konfigurasi build tidak ikut diterbitkan.
+- `scripts/validate-site.mjs`: pemeriksaan file wajib, titik pemasangan komponen, ID/anchor dan referensi ARIA, aset lokal, halaman detail tiap produk, impor dan sintaks JavaScript, bentuk data situs/produk, konfigurasi Netlify, URL konfigurasi, serta tautan relatif dokumentasi.
 - `.github/workflows/validate-site.yml`: menjalankan pemeriksaan statis di GitHub Actions pada push ke `main` dan pull request.
 
 ## Menjalankan dan memvalidasi
 
 Untuk menyajikan situs secara lokal, gunakan server statis. Situs memakai ES modules dan memuat komponen dengan `fetch()`, jadi membuka `index.html` langsung melalui skema `file://` tidak didukung.
 
-Pemeriksaan statis tanpa dependensi pihak ketiga:
+Pemeriksaan integritas dan build produksi tanpa dependensi pihak ketiga:
 
 ```bash
-node scripts/validate-site.mjs
+npm run validate
+npm run build
 ```
+
+Build menghasilkan folder `dist/` untuk deploy. Folder tersebut hanya berisi file yang memang dibutuhkan situs publik. Jangan ubah konfigurasi Netlify menjadi menerbitkan folder root, karena root repo juga berisi dokumentasi kerja dan bank pertanyaan internal.
 
 Pemeriksaan ini membantu menemukan berkas hilang, tautan internal yang rusak, ID duplikat, referensi aksesibilitas yang tidak cocok, data produk yang tidak lengkap, impor yang rusak, atau kesalahan sintaks JavaScript. Pemeriksaan ini bersifat statis: tidak membuka browser, tidak menguji tampilan responsif secara visual, dan tidak memverifikasi apakah layanan atau tautan eksternal benar-benar aktif.
 
 Saat situs berjalan, panel diagnostik mengidentifikasi error JavaScript client dan Promise yang gagal, kegagalan aset, HTTP 404/401/403/408/429/5xx, serta kegagalan koneksi tanpa respons. Panel menyertakan waktu, ID laporan, konteks, pesan teknis, saran pemeriksaan, dan jejak JavaScript bila tersedia; tombol **Salin laporan** memudahkan pengguna mengirim detailnya secara manual. Detail ditampilkan di browser dan konsol pengembang, bukan dikirim ke server. Karena situs ini statis, panel tidak dapat membaca log server/Netlify atau memastikan penyebab koneksi tanpa respons; pemeriksaan sisi hosting tetap dilakukan dari dashboard dan log penyedia.
 
-Halaman memakai favicon SVG, metadata Open Graph/Twitter dasar, halaman 404 mandiri, robots.txt, dan header keamanan dasar untuk Netlify. Domain publik resmi belum dikonfirmasi dalam konfigurasi repo, jadi URL canonical, og:url, og:image, dan sitemap sengaja belum dibuat agar tidak mengarahkan mesin pencari atau pratinjau tautan ke alamat yang salah.
+Halaman memakai favicon SVG, metadata Open Graph/Twitter dasar, halaman 404 mandiri, robots.txt, dan header keamanan dasar untuk Netlify. GitHub Actions memeriksa integritas source lalu menjalankan build produksi untuk memastikan bundel `dist/` berhasil disusun. Domain publik resmi belum dikonfirmasi dalam konfigurasi repo, jadi URL canonical, og:url, og:image, dan sitemap sengaja belum dibuat agar tidak mengarahkan mesin pencari atau pratinjau tautan ke alamat yang salah.
 
 ## Aturan konten dan verifikasi
 
