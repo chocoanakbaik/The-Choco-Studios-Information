@@ -34,6 +34,7 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 │   │   ├── layout.css
 │   │   ├── components.css
 │   │   ├── diagnostics.css
+│   │   ├── product-pages.css
 │   │   └── responsive.css
 │   └── js/
 │       ├── diagnostics.js
@@ -46,6 +47,11 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 │           ├── missions.js
 │           ├── navigation.js
 │           └── site-content.js
+├── products/
+│   ├── choco-ai.html
+│   ├── kasirkita.html
+│   ├── chocobot-guardian.html
+│   └── privacy-guardian.html
 ├── data/
 │   ├── site.js
 │   ├── navigation.js
@@ -82,15 +88,17 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 - `assets/js/main.js`: memuat komponen dan menghubungkan fitur dengan data.
 - `assets/js/diagnostics.js`: menangkap error JavaScript global, Promise yang gagal, aset yang gagal dimuat, dan kegagalan permintaan komponen; menampilkan kategori, sumber, waktu, pesan, status HTTP, baris/kolom, serta stack bila tersedia.
 - `assets/css/diagnostics.css`: gaya panel diagnostik yang muncul ketika ada masalah.
+- `assets/css/product-pages.css`: gaya responsif bersama untuk halaman detail produk agar tetap konsisten dengan identitas visual TCS.
 - `assets/js/menu.js`: buka/tutup menu, penutupan lewat tautan atau Escape, dan sinkronisasi saat ukuran layar berubah.
-- `assets/js/features/`: pengelolaan navigasi aktif, katalog produk, tautan situs, daftar misi, dan pengisian konten dari `data/site.js`.
+- `assets/js/features/`: pengelolaan navigasi aktif, katalog produk beserta tautan detailnya, tautan situs, daftar misi, dan pengisian konten dari `data/site.js`.
+- `products/`: halaman informasi terpisah untuk Choco AI, KasirKita, Chocobot Guardian, dan Privacy Guardian. Setiap halaman memiliki metadata dasar, breadcrumb, dan status yang dibatasi pada informasi terkonfirmasi.
 - `data/site.js`: identitas, visi, misi, kontak, bahasa, dan pasar.
 - `data/navigation.js`: satu sumber data untuk label, target, dan kelompok menu.
-- `data/products.js`: katalog produk, kategori, status, simbol, dan deskripsi.
+- `data/products.js`: katalog produk, kategori, status, simbol, deskripsi, dan path halaman detail masing-masing produk.
 - `docs/content-plan.md`: backlog konten dan aturan verifikasi.
 - `docs/questions/`: bank pertanyaan terkonfirmasi, pertanyaan tertunda, serta pertanyaan masa depan per bidang.
 - `docs/questionnaire.md`: indeks ke bank pertanyaan.
-- `scripts/validate-site.mjs`: pemeriksaan file wajib, titik pemasangan komponen, ID/anchor dan referensi ARIA, aset lokal, impor dan sintaks JavaScript, bentuk data situs/produk, URL konfigurasi, serta tautan relatif dokumentasi.
+- `scripts/validate-site.mjs`: pemeriksaan file wajib, titik pemasangan komponen, ID/anchor dan referensi ARIA, aset lokal, halaman detail tiap produk, impor dan sintaks JavaScript, bentuk data situs/produk, URL konfigurasi, serta tautan relatif dokumentasi.
 - `.github/workflows/validate-site.yml`: menjalankan pemeriksaan statis di GitHub Actions pada push ke `main` dan pull request.
 
 ## Menjalankan dan memvalidasi
