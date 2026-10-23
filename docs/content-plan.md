@@ -22,6 +22,8 @@ Dokumen kerja untuk melengkapi pusat informasi. Konten publik hanya diperbarui s
 - Situs menampilkan panel diagnostik di browser untuk error JavaScript, Promise yang gagal, aset gagal dimuat, HTTP 404/401/403/408/429/5xx, serta koneksi yang gagal sebelum respons HTTP. Detail mencakup ID, waktu, sumber, resource, pesan, saran, dan stack bila tersedia; pengguna dapat menyalin laporan secara manual. Tidak ada telemetri error otomatis ke server.
 - Karena TCS Information adalah situs statis, detail respons HTTP yang terlihat dari browser tidak sama dengan akses ke log server. Log hosting/CDN atau fungsi backend harus diperiksa secara terpisah lewat dashboard penyedia.
 - Katalog situs membaca data statis dari `data/products.js`; belum ada sinkronisasi otomatis katalog dengan Choco AI.
+- Identitas browser berupa `favicon.svg`, metadata Open Graph/Twitter dasar, halaman 404 mandiri, `robots.txt`, dan header keamanan dasar untuk Netlify sudah tersedia.
+- Domain publik resmi situs informasi belum dikonfirmasi dalam konfigurasi repo. URL canonical, `og:url`, `og:image`, dan sitemap menunggu domain resmi agar tidak memakai alamat yang salah.
 
 ## Perlu diverifikasi atau dilengkapi
 - Apakah Google Form masih aktif dan dapat dipakai oleh publik.
