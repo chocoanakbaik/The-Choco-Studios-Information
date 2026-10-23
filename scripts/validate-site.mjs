@@ -182,6 +182,9 @@ if (!/id="site-nav"/.test(header) || !/aria-controls="site-nav"/.test(header)) {
   fail("Kontrol menu tidak terhubung dengan elemen navigasi");
 }
 if (!/renderNavigation\(navigation\)/.test(main)) fail("Data navigasi belum dirender oleh main.js");
+if (!main.includes("const initialHash = window.location.hash.slice(1)") || !main.includes("initialTarget.scrollIntoView")) {
+  fail("Tautan anchor dari halaman detail belum dipulihkan setelah komponen dimuat");
+}
 if (!/import\s*\{\s*initActiveNavigation\s*\}\s*from\s*"\.\/features\/active-navigation\.js"/.test(main) ||
     !/initActiveNavigation\(\)/.test(main)) {
   fail("Perilaku navigasi aktif belum dihubungkan di main.js");
