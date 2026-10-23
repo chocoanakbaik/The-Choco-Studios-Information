@@ -1,0 +1,15 @@
+:root {
+  color-scheme: dark;
+  --bg: #080b14;
+  --sidebar: #0c101c;
+  --panel: #111625;
+  --panel-hover: #171e31;
+  --border: rgba(255,255,255,.075);
+  --text: #eef2ff;
+  --muted: #8993ad;
+  --blue: #638cff;
+  --purple: #a16bff;
+  --gradient: linear-gradient(115deg, #648bff, #a76cff);
+  --content: 1120px;
+  --radius-card: 17px;
+}
