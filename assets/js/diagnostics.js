@@ -7,6 +7,9 @@
   let summary;
   let list;
   let closeButton;
+  let copyButton;
+  let copyStatus;
+  let totalEntries = 0;
 
   function describeError(error) {
     if (error instanceof Error) {
@@ -97,6 +100,40 @@
     title.textContent = "Detail masalah situs";
     headingWrap.append(kicker, title);
 
+    const actions = document.createElement("div");
+    actions.className = "diagnostic-actions";
+
+    copyButton = document.createElement("button");
+    copyButton.type = "button";
+    copyButton.className = "diagnostic-copy";
+    copyButton.textContent = "Salin laporan";
+    copyButton.addEventListener("click", async () => {
+      const reportText = entries.map(entry => [
+        entry.id,
+        "Jenis: " + entry.classification.label,
+        "Lapisan: " + entry.classification.layer,
+        "Waktu: " + entry.time,
+        "Sumber: " + entry.source,
+        "Berkas/URL: " + entry.resource,
+        "HTTP: " + (entry.status || "-") + (entry.statusText ? " " + entry.statusText : ""),
+        "Lokasi: " + (entry.line ? entry.line + ":" + (entry.column || 0) : "-"),
+        "Pesan: " + entry.message,
+        "Langkah pemeriksaan: " + entry.classification.advice,
+        entry.stack ? "Jejak JavaScript:\n" + entry.stack : ""
+      ].filter(Boolean).join("\n")).join("\n\n--------------------\n\n");
+
+      try {
+        if (!navigator.clipboard || typeof navigator.clipboard.writeText !== "function") {
+          throw new Error("Clipboard API tidak tersedia pada konteks ini.");
+        }
+        await navigator.clipboard.writeText(reportText);
+        copyStatus.textContent = "Laporan berhasil disalin ke clipboard.";
+      } catch (error) {
+        copyStatus.textContent = "Browser menolak penyalinan otomatis. Detail tetap tersedia di panel untuk disalin manual.";
+        console.warn("[TCS Diagnostics] Tidak dapat menyalin laporan:", error);
+      }
+    });
+
     closeButton = document.createElement("button");
     closeButton.type = "button";
     closeButton.className = "diagnostic-close";
@@ -106,13 +143,18 @@
       panel.hidden = true;
     });
 
-    header.append(headingWrap, closeButton);
+    actions.append(copyButton, closeButton);
+    header.append(headingWrap, actions);
     summary = document.createElement("p");
     summary.className = "diagnostic-summary";
     summary.setAttribute("aria-live", "polite");
+    copyStatus = document.createElement("p");
+    copyStatus.className = "diagnostic-copy-status";
+    copyStatus.setAttribute("role", "status");
+    copyStatus.setAttribute("aria-live", "polite");
     list = document.createElement("ol");
     list.className = "diagnostic-list";
-    panel.append(header, summary, list);
+    panel.append(header, summary, copyStatus, list);
     document.body.append(panel);
   }
 
@@ -166,7 +208,7 @@
   function report(input = {}) {
     const errorInfo = describeError(input.error ?? input.message ?? "Kesalahan tidak diketahui.");
     const classification = classify(input);
-    const sequence = entries.length + 1;
+    const sequence = ++totalEntries;
     const now = new Date();
     const entry = {
       id: "TCS-ERR-" + now.getTime().toString(36).toUpperCase() + "-" + String(sequence).padStart(2, "0"),
