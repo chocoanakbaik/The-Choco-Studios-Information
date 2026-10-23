@@ -9,10 +9,12 @@ Dokumen kerja internal untuk melengkapi pusat informasi. Konten publik hanya dip
 - Visi, empat misi, nilai utama, pasar awal, dan strategi bahasa tersedia di `data/site.js`.
 - Email kontak: thechocostudio@gmail.com.
 - Bahasa utama: Indonesia; bahasa kedua: Inggris; dukungan bahasa lain menjadi tujuan jangka panjang.
+- Nama pendiri (Hasby Prasetya Saprudin) ditampilkan jelas di halaman publik; TCS adalah solo developer, bukan perusahaan.
+- Kisah pendiri tidak ditampilkan; bio pendiri cukup nama.
+- Prinsip yang tidak dikompromikan: tidak membolehkan hacking, penyebaran data ilegal, atau tindakan ilegal/melawan hukum sekecil apa pun.
+- Belum ada tonggak sejarah lain yang pasti tanggalnya selain 12 Desember 2023.
 
 ## Perlu dilengkapi
-- Identitas publik pendiri dan seberapa jauh biodata yang layak ditampilkan.
-- Riwayat TCS dan milestone yang dapat dipublikasikan.
 - Deskripsi, status, fitur, batasan, platform, dan tautan resmi setiap produk.
 - Pemisahan produk rilis, beta, proyek aktif, proyek ditunda, dan arsip.
 - Teknologi per produk pada tingkat yang aman untuk publik.
