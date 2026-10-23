@@ -329,6 +329,51 @@ for (const doc of markdownFiles) {
 }
 if (failures.length === 0) pass(`Tautan relatif di ${markdownFiles.length} dokumen Markdown diperiksa`);
 
+
+const questionFiles = walkFiles("docs/questions", [".md"]);
+const questionTopics = questionFiles.filter(file => file !== "docs/questions/README.md");
+const questionIndexes = ["docs/questionnaire.md", "docs/questions/README.md"];
+const questionIdOwners = new Map();
+
+function indexContainsTopic(indexFile, targetFile) {
+  const source = read(indexFile);
+  for (const match of source.matchAll(/\]\(([^)]+)\)/g)) {
+    const target = match[1].split("#")[0];
+    if (!target || /^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith("//")) continue;
+    const resolved = path.resolve(path.dirname(path.join(root, indexFile)), target);
+    if (resolved === path.resolve(root, targetFile)) return true;
+  }
+  return false;
+}
+
+for (const topic of questionTopics) {
+  const source = read(topic);
+  const matches = [...source.matchAll(/\*\*([A-Z]{2,4}-\d{2,}):?\*\*/g)];
+  if (matches.length === 0) fail("Bank pertanyaan tidak memiliki ID pertanyaan: " + topic);
+
+  for (const match of matches) {
+    const id = match[1];
+    const lineStart = source.lastIndexOf("\n", match.index) + 1;
+    const prefix = source.slice(lineStart, match.index);
+    if (!/^\s*-\s+\[(?:x|NANTI| )\]\s*$/.test(prefix)) {
+      fail("Status pertanyaan harus berupa [x], [ ], atau [NANTI]: " + id + " di " + topic);
+    }
+    if (questionIdOwners.has(id)) {
+      fail("ID pertanyaan duplikat " + id + " di " + questionIdOwners.get(id) + " dan " + topic);
+    } else {
+      questionIdOwners.set(id, topic);
+    }
+  }
+
+  for (const indexFile of questionIndexes) {
+    if (!indexContainsTopic(indexFile, topic)) {
+      fail("File kategori belum ditautkan dari " + indexFile + ": " + topic);
+    }
+  }
+}
+if (questionTopics.length === 0) fail("Bank pertanyaan tidak memiliki file kategori");
+if (failures.length === 0) pass(questionIdOwners.size + " ID pertanyaan unik dan " + questionTopics.length + " kategori terindeks di kedua indeks");
+
 if (failures.length) {
   console.error("\nVALIDASI GAGAL");
   for (const failure of failures) console.error(`- ${failure}`);
