@@ -75,3 +75,10 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+@media (max-width: 400px) {
+  .brand-sub { display: none; }
+  .brand-name { max-width: 112px; overflow-wrap: normal; font-size: 11px; }
+  .header-cta { gap: 5px; padding: 0 8px; font-size: 9px; }
+  .topbar-inner { gap: 8px; }
+}
