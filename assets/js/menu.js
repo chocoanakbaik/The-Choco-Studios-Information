@@ -15,11 +15,13 @@ export function initMenu() {
     menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
   });
 
-  siteNav.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+  siteNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
   document.addEventListener("keydown", event => {
     if (event.key === "Escape") closeMenu();
   });
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 760) closeMenu();
+    if (window.innerWidth > 1040) closeMenu();
   });
 }
