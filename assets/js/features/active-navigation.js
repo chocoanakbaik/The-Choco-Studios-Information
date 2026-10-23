@@ -11,6 +11,9 @@ export function initActiveNavigation() {
     if (section) sections.set(id, section);
   }
 
+  const homeSection = document.getElementById("home");
+  if (homeSection) sections.set("home", homeSection);
+
   if (!sections.size) return;
 
   const setActive = id => {
