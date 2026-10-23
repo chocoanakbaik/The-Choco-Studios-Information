@@ -119,8 +119,9 @@ if (!diagnostics.includes("window.TCSDiagnostics") ||
     !diagnostics.includes('addEventListener("error"')) {
   fail("Diagnostik belum menangani error client global dan Promise yang gagal");
 }
-if (!diagnostics.includes("HTTP " + "5") || !diagnostics.includes("NO_HTTP_RESPONSE") ||
-    !diagnostics.includes("SERVER_HTTP") || !diagnostics.includes("CLIENT_RUNTIME")) {
+if (!diagnostics.includes('Respons server (HTTP "') || !diagnostics.includes("status >= 500") ||
+    !diagnostics.includes("NO_HTTP_RESPONSE") || !diagnostics.includes("SERVER_HTTP") ||
+    !diagnostics.includes("CLIENT_RUNTIME")) {
   fail("Klasifikasi client, HTTP server, dan koneksi belum lengkap");
 }
 if (!diagnosticStyles.includes(".diagnostic-panel[hidden] { display: none; }") ||
