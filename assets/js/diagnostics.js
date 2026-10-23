@@ -36,12 +36,44 @@
         advice: "Server atau lapisan hosting mengembalikan status 5xx. Periksa log hosting/CDN, konfigurasi publikasi, dan layanan yang diminta."
       };
     }
+    if (status === 404) {
+      return {
+        code: "HTTP_NOT_FOUND",
+        label: "Berkas atau rute tidak ditemukan (HTTP 404)",
+        layer: "Path aset / routing hosting",
+        advice: "Pastikan berkas benar-benar ada di commit yang dipublikasikan, path cocok persis termasuk huruf besar-kecil, dan folder publikasi hosting benar."
+      };
+    }
+    if (status === 401 || status === 403) {
+      return {
+        code: "HTTP_ACCESS",
+        label: "Akses ditolak (HTTP " + status + ")",
+        layer: "Izin / autentikasi / aturan hosting",
+        advice: "Periksa autentikasi, izin akses, header, serta aturan keamanan atau redirect di hosting/CDN. Jangan menaruh kredensial dalam laporan."
+      };
+    }
+    if (status === 429) {
+      return {
+        code: "HTTP_RATE_LIMIT",
+        label: "Batas permintaan tercapai (HTTP 429)",
+        layer: "Rate limit / kuota layanan",
+        advice: "Periksa batas permintaan, kuota, dan aturan rate limit layanan yang dituju sebelum mencoba kembali."
+      };
+    }
+    if (status === 408) {
+      return {
+        code: "HTTP_TIMEOUT",
+        label: "Permintaan kehabisan waktu (HTTP 408)",
+        layer: "Jaringan / server tujuan",
+        advice: "Periksa kestabilan jaringan, waktu respons origin, dan konfigurasi timeout pada proxy atau hosting."
+      };
+    }
     if (Number.isInteger(status) && status >= 400) {
       return {
         code: "HTTP_REQUEST",
-        label: "Permintaan atau aset ditolak (HTTP " + status + ")",
+        label: "Permintaan ditolak (HTTP " + status + ")",
         layer: "Permintaan / routing / aset",
-        advice: "Periksa alamat dan nama berkas, huruf besar-kecil path, aturan routing, serta konfigurasi folder publikasi. Status ini saja belum membuktikan pengguna yang salah."
+        advice: "Periksa alamat dan nama berkas, parameter permintaan, huruf besar-kecil path, aturan routing, serta konfigurasi folder publikasi. Status ini saja belum membuktikan pengguna yang salah."
       };
     }
     if (input.kind === "network") {
