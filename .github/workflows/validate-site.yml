@@ -21,4 +21,6 @@ jobs:
         with:
           node-version: 22
       - name: Run static integrity checks
-        run: node scripts/validate-site.mjs
+        run: npm run validate
+      - name: Assemble clean Netlify production bundle
+        run: npm run build
