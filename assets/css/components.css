@@ -1,0 +1,34 @@
+.brand-mark { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 14px; background: var(--gradient); color: white; font-size: 14px; font-weight: 850; letter-spacing: -1px; box-shadow: 0 0 25px rgba(111,112,255,.18); }
+.nav a { padding: 10px 11px; color: #aab4cd; border: 1px solid transparent; border-radius: 10px; font-size: 12px; transition: .2s; }
+.nav a:hover, .nav a[aria-current="location"] { color: white; background: rgba(125,143,255,.09); border-color: rgba(125,143,255,.1); }
+.header-contact { display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; border: 1px solid rgba(125,145,255,.28); border-radius: 11px; background: linear-gradient(110deg, rgba(89,119,255,.17), rgba(153,91,255,.12)); font-size: 12px; font-weight: 650; transition: .2s; flex-shrink: 0; }
+.header-contact:hover { border-color: rgba(145,145,255,.65); transform: translateY(-1px); }
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 22px; color: #aaa9ff; font-size: 10px; font-weight: 780; letter-spacing: 2px; text-transform: uppercase; }
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--gradient); }
+h1 { max-width: 760px; margin: 0; font-size: clamp(42px, 7vw, 76px); line-height: 1.03; letter-spacing: -3.5px; font-weight: 780; }
+.gradient-text { color: transparent; background: linear-gradient(100deg, #7ea5ff 10%, #b69aff 58%, #e2a5ff 100%); background-clip: text; -webkit-background-clip: text; }
+.hero-description { max-width: 610px; margin: 24px 0 30px; color: #9aa5bf; font-size: 15px; line-height: 1.9; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; padding: 0 16px; border: 1px solid var(--border); border-radius: 12px; font-size: 12px; font-weight: 680; transition: .2s; }
+.button-primary { border-color: rgba(125,145,255,.32); background: linear-gradient(110deg, rgba(89,119,255,.22), rgba(153,91,255,.17)); }
+.button-secondary { color: #c1c9dd; background: rgba(255,255,255,.025); }
+.button:hover { transform: translateY(-2px); border-color: rgba(145,145,255,.6); }
+.section-kicker { margin-bottom: 11px; color: #a7a5ff; font-size: 10px; font-weight: 760; letter-spacing: 1.8px; text-transform: uppercase; }
+.section-intro { max-width: 650px; margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
+.text-link { display: inline-flex; align-items: center; gap: 8px; color: #b5baff; font-size: 12px; font-weight: 650; }
+.text-link:hover { color: white; }
+.overview-card, .product-card { position: relative; min-width: 0; padding: 23px; border: 1px solid var(--border); border-radius: var(--radius-card); background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); transition: .22s; }
+.overview-card:hover, .product-card:hover { transform: translateY(-3px); border-color: rgba(126,139,255,.35); background: linear-gradient(145deg, rgba(108,120,255,.075), rgba(255,255,255,.012)); }
+.card-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 20px; border: 1px solid rgba(138,133,255,.25); border-radius: 13px; background: linear-gradient(135deg, rgba(98,137,255,.18), rgba(164,102,255,.14)); color: #c4c5ff; }
+.card-icon svg { width: 20px; height: 20px; }
+.card-copy { margin: 10px 0 0; color: #8f9ab5; font-size: 12px; line-height: 1.8; }
+.placeholder-note { padding: 17px; border: 1px dashed rgba(135,148,191,.22); border-radius: 13px; color: #7f8aa4; font-size: 11px; line-height: 1.8; }
+.placeholder-note strong { display: block; margin-bottom: 5px; color: #b2bdd5; font-size: 11px; }
+.product-top { display: flex; align-items: center; gap: 12px; margin-bottom: 17px; }
+.product-symbol { display: grid; place-items: center; width: 43px; height: 43px; flex-shrink: 0; border: 1px solid rgba(138,133,255,.25); border-radius: 14px; background: var(--gradient); color: white; font-weight: 800; }
+.product-label { display: block; margin-top: 5px; color: #78849f; font-size: 10px; }
+.status-tag { display: inline-flex; margin-top: 16px; padding: 5px 8px; border: 1px solid rgba(135,148,191,.18); border-radius: 7px; color: #9ca8c1; font-size: 9px; }
+.contact-panel p { max-width: 650px; margin: 10px 0 0; color: #9aa5bf; font-size: 12px; line-height: 1.8; }
+.footer-copy { color: #737f99; font-size: 10px; line-height: 1.7; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 17px; color: #8e99b3; font-size: 11px; }
+.footer-links a:hover { color: white; }
