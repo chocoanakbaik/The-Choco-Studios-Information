@@ -7,10 +7,10 @@ Ini adalah daftar kerja berkelanjutan. Pertanyaan diajukan satu per satu, bukan 
 - [x] Tanggal mulai dan asal mula proyek.
 - [x] Alasan pendirian, pasar awal, target umum, dan nilai utama.
 - [x] Bahasa utama, bahasa kedua, dan rencana multibahasa.
-- [ ] Apakah nama pendiri ditampilkan secara jelas di halaman publik atau cukup disebut sebagai pendiri/solo developer?
-- [ ] Apakah TCS ingin menampilkan kisah pendiri atau hanya sejarah studio?
-- [ ] Apa prinsip atau batasan yang tidak akan dikompromikan oleh TCS?
-- [ ] Apakah ada tonggak sejarah lain yang sudah pasti tanggalnya?
+- [x] Apakah nama pendiri ditampilkan secara jelas di halaman publik atau cukup disebut sebagai pendiri/solo developer? Jawaban: ditampilkan jelas (Hasby Prasetya Saprudin) agar transparan bahwa TCS solo developer, bukan perusahaan.
+- [x] Apakah TCS ingin menampilkan kisah pendiri atau hanya sejarah studio? Jawaban: hanya sejarah studio; bio pendiri cukup nama.
+- [x] Apa prinsip atau batasan yang tidak akan dikompromikan oleh TCS? Jawaban: tidak membolehkan hacking, penyebaran data ilegal, atau tindakan ilegal/melawan hukum sekecil apa pun.
+- [x] Apakah ada tonggak sejarah lain yang sudah pasti tanggalnya? Jawaban: belum ada.
 
 ## Produk dan proyek
 - [ ] Produk mana yang benar-benar tersedia untuk publik sekarang?
