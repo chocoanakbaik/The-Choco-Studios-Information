@@ -25,7 +25,12 @@ export function renderCatalog(products) {
     const status = document.createElement("span");
     status.className = "status-tag";
     status.textContent = product.status;
-    article.append(top, description, status);
+    const detailsLink = document.createElement("a");
+    detailsLink.className = "text-link product-details-link";
+    detailsLink.href = product.detailsUrl;
+    detailsLink.setAttribute("aria-label", `Lihat detail ${product.name}`);
+    detailsLink.textContent = "Lihat detail";
+    article.append(top, description, status, detailsLink);
     list.append(article);
   }
 }
