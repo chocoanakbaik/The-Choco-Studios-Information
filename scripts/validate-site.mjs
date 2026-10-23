@@ -264,6 +264,13 @@ if (site && navigation && products) {
     }
   }
 
+  for (const match of allComponentMarkup.matchAll(/data-link-text="([^"]+)"/g)) {
+    const value = getSiteValue(match[1]);
+    if (typeof value !== "string" || !value.trim()) {
+      fail("Kunci data-link-text tidak ada atau kosong di data/site.js: " + match[1]);
+    }
+  }
+
   if (typeof site.phoneDisplay !== "string" || !/^[0-9]{8,15}$/.test(site.phoneDisplay)) {
     fail("Nomor tampilan telepon tidak valid di data/site.js");
   }
