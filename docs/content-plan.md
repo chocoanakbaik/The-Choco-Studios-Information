@@ -9,18 +9,19 @@ Dokumen kerja untuk melengkapi pusat informasi. Konten publik hanya diperbarui s
 - Nama pendiri ditampilkan; kisah pribadi pendiri tidak.
 - Prinsip: tidak membolehkan hacking, penyebaran data ilegal, atau tindakan ilegal.
 - Choco AI adalah produk browser yang tersedia. Sara AI adalah asisten pada Help Center Choco AI.
-- KasirKita dan Chocobot Guardian dalam pengembangan; rincian Privacy Guardian masih menyusul.
+- KasirKita dan Chocobot Guardian dalam pengembangan; rincian status rilis Privacy Guardian masih perlu diverifikasi.
 - Sebagian produk berbayar dan sebagian gratis. Dua proyek internal dirahasiakan.
 - Choco AI menggunakan Groq untuk pemrosesan model dan menampilkan iklan Adsterra.
 - Kanal kontak mencakup email, telepon, dan Google Form yang dikonfigurasi di `data/site.js`. Waktu respons yang disampaikan adalah paling lama 3 hari.
 - Hak cipta ditampilkan; penjualan ulang hanya sesuai versi/lisensi yang memang diizinkan.
 - Pasar kedua: Asia. Tombol ganti bahasa direncanakan untuk tahap berikutnya.
 - Catatan rilis menggunakan tanggal dan daftar perubahan; sumber status rilis adalah pendiri TCS.
+- Struktur menu, komponen, data produk, dan bank pertanyaan dipisahkan; pemeriksaan integritas statis tersedia di `scripts/validate-site.mjs`.
 
 ## Perlu diverifikasi atau dilengkapi
 - Apakah Google Form masih aktif dan dapat dipakai oleh publik.
 - Rincian penyimpanan riwayat percakapan dan memori akun Choco AI.
-- Detail publik Chocobot Guardian dan Privacy Guardian.
+- Fitur serta status rilis final produk yang masih dikembangkan.
 - Syarat penggunaan dan kebijakan privasi umum/per produk.
 - Ketentuan lisensi, distribusi, refund, garansi, dan dukungan produk berbayar.
 - Catatan rilis pertama dengan tanggal dan perubahan yang terverifikasi.
@@ -36,3 +37,4 @@ Pertanyaan berjalan dan backlog masa depan dipisah berdasarkan bidang di `docs/q
 3. Jangan mengubah status produk berdasarkan perkiraan.
 4. Verifikasi tautan, klaim, tanggal, dan perilaku responsif sebelum publikasi.
 5. Pertahankan halaman awal ringan; komponen, gaya, data, fitur, dan pertanyaan dipisahkan.
+6. Jalankan `node scripts/validate-site.mjs` sebelum publikasi; pemeriksaan browser dan layanan eksternal tetap dilakukan terpisah.
