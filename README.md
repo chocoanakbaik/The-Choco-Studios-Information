@@ -29,8 +29,10 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 │   │   ├── base.css
 │   │   ├── layout.css
 │   │   ├── components.css
+│   │   ├── diagnostics.css
 │   │   └── responsive.css
 │   └── js/
+│       ├── diagnostics.js
 │       ├── main.js
 │       ├── menu.js
 │       └── features/
@@ -70,6 +72,8 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 - `assets/css/components.css`: gaya tombol, kartu, label, dan komponen visual.
 - `assets/css/responsive.css`: breakpoint layar dan reduced motion; menu tetap dapat diakses pada rentang tablet.
 - `assets/js/main.js`: memuat komponen dan menghubungkan fitur dengan data.
+- `assets/js/diagnostics.js`: menangkap error JavaScript global, Promise yang gagal, dan aset yang gagal dimuat; menampilkan panel berisi kategori, sumber, waktu, serta detail teknis di browser.
+- `assets/css/diagnostics.css`: gaya panel diagnostik yang muncul ketika ada masalah.
 - `assets/js/menu.js`: buka/tutup menu, penutupan lewat tautan atau Escape, dan sinkronisasi saat ukuran layar berubah.
 - `assets/js/features/`: pengelolaan navigasi aktif, katalog produk, tautan situs, daftar misi, dan pengisian konten dari `data/site.js`.
 - `data/site.js`: identitas, visi, misi, kontak, bahasa, dan pasar.
@@ -92,6 +96,8 @@ node scripts/validate-site.mjs
 ```
 
 Pemeriksaan ini membantu menemukan berkas hilang, tautan internal yang rusak, ID duplikat, referensi aksesibilitas yang tidak cocok, data produk yang tidak lengkap, impor yang rusak, atau kesalahan sintaks JavaScript. Pemeriksaan ini bersifat statis: tidak membuka browser, tidak menguji tampilan responsif secara visual, dan tidak memverifikasi apakah layanan atau tautan eksternal benar-benar aktif.
+
+Saat situs berjalan, panel diagnostik mengidentifikasi error JavaScript client, kegagalan aset, status HTTP 4xx/5xx, dan kegagalan koneksi tanpa respons. Detail ditampilkan di browser dan konsol pengembang, bukan dikirim ke server. Karena situs ini statis, panel tidak dapat membaca log server/Netlify atau memastikan penyebab koneksi tanpa respons; pemeriksaan sisi hosting tetap dilakukan dari dashboard dan log penyedia.
 
 ## Aturan konten dan verifikasi
 
