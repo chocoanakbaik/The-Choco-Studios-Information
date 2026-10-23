@@ -8,6 +8,7 @@
 - [x] Privacy Guardian memiliki deskripsi dasar publik: aplikasi desktop Windows untuk membantu memahami dokumen kebijakan. Status rilis dan fitur final tetap perlu diverifikasi.
 - [x] Dua proyek internal tidak ditampilkan di katalog publik.
 - [x] Detail dan status produk disimpan di `data/products.js`.
+- [x] Source Choco AI mengandung alur ekstraksi kandidat memori setelah pesan akun berhasil disimpan; Help Center saat ini juga membedakan tindakan manual `+ Memori` dari menu Memori yang berstatus Soon.
 
 ## Menunggu konfirmasi
 - [ ] **PRD-01:** Apa daftar fitur Choco AI yang benar-benar sudah tersedia pada situs live saat ini?
