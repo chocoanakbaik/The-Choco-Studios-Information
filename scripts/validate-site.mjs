@@ -32,6 +32,10 @@ function walkFiles(dir, extensions) {
 
 const requiredFiles = [
   "index.html",
+  "404.html",
+  "favicon.svg",
+  "robots.txt",
+  "_headers",
   "package.json",
   "README.md",
   ".github/workflows/validate-site.yml",
@@ -82,6 +86,9 @@ for (const file of requiredFiles) {
 if (failures.length === 0) pass(`${requiredFiles.length} file wajib tersedia`);
 
 const index = read("index.html");
+const custom404 = read("404.html");
+const robots = read("robots.txt");
+const headers = read("_headers");
 const main = read("assets/js/main.js");
 const diagnostics = read("assets/js/diagnostics.js");
 const diagnosticStyles = read("assets/css/diagnostics.css");
@@ -93,6 +100,26 @@ const menu = read("assets/js/menu.js");
 if (!/<html\s+lang="id"/i.test(index)) fail("index.html harus menetapkan Bahasa Indonesia sebagai bahasa utama");
 if (!/<title>[^<]+<\/title>/i.test(index)) fail("Judul halaman tidak ditemukan");
 if (!/<meta\s+name="description"\s+content="[^"]+"/i.test(index)) fail("Deskripsi metadata halaman tidak ditemukan");
+const hasMeta = key => new RegExp(`<meta\\s+(?:name|property)="${key}"\\s+content="[^"]+"`, "i").test(index);
+for (const key of ["og:site_name", "og:title", "og:description", "og:type", "og:locale", "twitter:card", "twitter:title", "twitter:description"]) {
+  if (!hasMeta(key)) fail(`Metadata pratinjau tautan tidak ditemukan: ${key}`);
+}
+if (!/<link\\s+rel="icon"\\s+type="image\\/svg\\+xml"\\s+href="favicon\\.svg"/i.test(index)) {
+  fail("Favicon SVG tidak ditautkan dari index.html");
+}
+if (!/<title>[^<]*404[^<]*<\\/title>/i.test(custom404) ||
+    !/<h1>Halaman tidak ditemukan<\\/h1>/i.test(custom404) ||
+    !/href="\\/"/.test(custom404) ||
+    !/href="\\/favicon\\.svg"/.test(custom404) ||
+    !/name="robots" content="noindex,follow"/.test(custom404)) {
+  fail("Halaman 404 harus punya judul, pesan, ikon, tombol kembali, dan noindex");
+}
+for (const header of ["X-Content-Type-Options: nosniff", "Referrer-Policy: strict-origin-when-cross-origin", "X-Frame-Options: DENY", "Permissions-Policy: camera=(), microphone=(), geolocation=()"]) {
+  if (!headers.includes(header)) fail(`Header keamanan dasar tidak ditemukan: ${header}`);
+}
+if (!robots.includes("User-agent: *") || !robots.includes("Allow: /")) {
+  fail("robots.txt belum memiliki aturan perayapan dasar");
+}
 if (!/id="site-main"/.test(index)) fail("Landmark konten utama #site-main tidak ditemukan");
 if (!/class="skip-link"\s+href="#site-main"/.test(index)) fail("Tautan lewati ke konten utama tidak ditemukan");
 if (!/id="site-nav"/.test(header) || !/aria-controls="site-nav"/.test(header)) {
