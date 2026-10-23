@@ -1,4 +1,5 @@
 import { initMenu } from "./menu.js";
+import { applySiteContent } from "./features/site-content.js";
 import { renderCatalog } from "./features/catalog.js";
 import { renderMissions } from "./features/missions.js";
 import { renderNavigation } from "./features/navigation.js";
@@ -37,6 +38,7 @@ async function loadComponents() {
 
 try {
   await loadComponents();
+  applySiteContent(site);
   renderNavigation(navigation);
   initMenu();
   renderCatalog(products);
