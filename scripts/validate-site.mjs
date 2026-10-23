@@ -50,7 +50,9 @@ const requiredFiles = [
   "assets/css/base.css",
   "assets/css/layout.css",
   "assets/css/components.css",
+  "assets/css/diagnostics.css",
   "assets/css/responsive.css",
+  "assets/js/diagnostics.js",
   "assets/js/main.js",
   "assets/js/menu.js",
   "assets/js/features/catalog.js",
@@ -81,6 +83,8 @@ if (failures.length === 0) pass(`${requiredFiles.length} file wajib tersedia`);
 
 const index = read("index.html");
 const main = read("assets/js/main.js");
+const diagnostics = read("assets/js/diagnostics.js");
+const diagnosticStyles = read("assets/css/diagnostics.css");
 const header = read("components/header.html");
 const responsive = read("assets/css/responsive.css");
 const componentStyles = read("assets/css/components.css");
@@ -106,6 +110,31 @@ if (!/import\s*\{\s*applySiteContent\s*\}\s*from\s*"\.\/features\/site-content\.
 if (!/import\s*\{\s*navigation\s*\}\s*from\s*["']\.\.\/\.\.\/data\/navigation\.js["']/.test(main)) {
   fail("main.js belum mengimpor data/navigation.js");
 }
+if (index.indexOf('src="assets/js/diagnostics.js"') < 0 ||
+    index.indexOf('src="assets/js/diagnostics.js"') > index.indexOf('src="assets/js/main.js"')) {
+  fail("Diagnostik global harus dimuat sebelum modul aplikasi");
+}
+if (!diagnostics.includes("window.TCSDiagnostics") ||
+    !diagnostics.includes('addEventListener("unhandledrejection"') ||
+    !diagnostics.includes('addEventListener("error"')) {
+  fail("Diagnostik belum menangani error client global dan Promise yang gagal");
+}
+if (!diagnostics.includes("HTTP " + "5") || !diagnostics.includes("NO_HTTP_RESPONSE") ||
+    !diagnostics.includes("SERVER_HTTP") || !diagnostics.includes("CLIENT_RUNTIME")) {
+  fail("Klasifikasi client, HTTP server, dan koneksi belum lengkap");
+}
+if (!diagnosticStyles.includes(".diagnostic-panel[hidden] { display: none; }") ||
+    !diagnosticStyles.includes(".diagnostic-fields") ||
+    !diagnosticStyles.includes(".diagnostic-stack")) {
+  fail("Gaya panel detail diagnostik belum lengkap");
+}
+if (!main.includes("window.TCSDiagnostics") ||
+    !main.includes("reportDiagnostic") ||
+    !main.includes("loadComponents")) {
+  fail("Alur pemuatan komponen belum terhubung ke pelaporan diagnostik");
+}
+if (failures.length === 0) pass("Pelaporan detail error client, HTTP, dan koneksi dikonfigurasi");
+
 if (!responsive.includes("@media (max-width: 1040px)") ||
     !responsive.includes(".nav.open { display: flex; }") ||
     !responsive.includes(".nav .nav-secondary { display: block; }")) {
