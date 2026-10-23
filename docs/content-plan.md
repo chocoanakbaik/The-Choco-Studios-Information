@@ -19,6 +19,7 @@ Dokumen kerja untuk melengkapi pusat informasi. Konten publik hanya diperbarui s
 - Pasar kedua: Asia. Tombol ganti bahasa direncanakan untuk tahap berikutnya.
 - Catatan rilis menggunakan tanggal dan daftar perubahan; sumber status rilis adalah pendiri TCS.
 - Struktur menu, komponen, data produk, dan bank pertanyaan dipisahkan; pemeriksaan integritas statis tersedia di `scripts/validate-site.mjs`.
+- Katalog situs membaca data statis dari `data/products.js`; belum ada sinkronisasi otomatis katalog dengan Choco AI.
 
 ## Perlu diverifikasi atau dilengkapi
 - Apakah Google Form masih aktif dan dapat dipakai oleh publik.
