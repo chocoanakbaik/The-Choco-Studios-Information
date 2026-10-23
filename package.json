@@ -1,0 +1,8 @@
+{
+  "name": "the-choco-studios-information",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-site.mjs"
+  }
+}
