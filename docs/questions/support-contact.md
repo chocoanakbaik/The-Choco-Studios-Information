@@ -6,6 +6,7 @@
 - [x] Sara AI/Help Center: https://choco-ai-help-center.netlify.app/.
 - [x] Waktu respons yang disampaikan kepada publik: paling lama 3 hari.
 - [x] Google Form disimpan sebagai `contactFormUrl` di `data/site.js`.
+- [x] Email, nomor telepon, dan alamat tautan kanal kontak dipusatkan di `data/site.js`, lalu diterapkan ke komponen saat halaman dimuat.
 
 ## Menunggu konfirmasi
 - [ ] **SUP-01:** Apakah Google Form tersebut masih aktif, dapat diakses publik, dan memang formulir kontak resmi TCS?
