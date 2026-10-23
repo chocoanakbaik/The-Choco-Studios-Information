@@ -119,6 +119,11 @@ try {
   renderMissions(site.missions);
   applySiteLinks(site);
 
+  // Navigasi ke anchor dari halaman detail harus menunggu komponen berisi target selesai dimuat.
+  const initialHash = window.location.hash.slice(1);
+  const initialTarget = initialHash ? document.getElementById(initialHash) : null;
+  if (initialTarget) initialTarget.scrollIntoView({ block: "start" });
+
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 } catch (error) {
