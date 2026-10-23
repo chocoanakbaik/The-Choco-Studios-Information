@@ -57,6 +57,7 @@ const requiredFiles = [
   "assets/js/features/links.js",
   "assets/js/features/missions.js",
   "assets/js/features/navigation.js",
+  "assets/js/features/site-content.js",
   "data/site.js",
   "data/navigation.js",
   "data/products.js",
@@ -92,6 +93,10 @@ if (!/id="site-nav"/.test(header) || !/aria-controls="site-nav"/.test(header)) {
   fail("Kontrol menu tidak terhubung dengan elemen navigasi");
 }
 if (!/renderNavigation\(navigation\)/.test(main)) fail("Data navigasi belum dirender oleh main.js");
+if (!/import\s*\{\s*applySiteContent\s*\}\s*from\s*"\.\/features\/site-content\.js"/.test(main) ||
+    !/applySiteContent\(site\)/.test(main)) {
+  fail("Konten berbasis data belum diterapkan setelah komponen dimuat");
+}
 if (!/import\s*\{\s*navigation\s*\}\s*from\s*["']\.\.\/\.\.\/data\/navigation\.js["']/.test(main)) {
   fail("main.js belum mengimpor data/navigation.js");
 }
@@ -244,7 +249,29 @@ if (site && navigation && products) {
       fail(`Kunci data-link-key tidak ada atau kosong di data/site.js: ${match[1]}`);
     }
   }
-  if (failures.length === 0) pass("URL, data misi, navigasi, katalog, dan kunci tautan valid");
+
+  const getSiteValue = key => key.split(".").reduce((value, part) => value?.[part], site);
+  for (const match of allComponentMarkup.matchAll(/data-site-text="([^"]+)"/g)) {
+    const value = getSiteValue(match[1]);
+    if (typeof value !== "string" && typeof value !== "number") {
+      fail("Kunci data-site-text tidak ada atau bukan teks di data/site.js: " + match[1]);
+    }
+  }
+  for (const match of allComponentMarkup.matchAll(/data-site-list="([^"]+)"/g)) {
+    const value = getSiteValue(match[1]);
+    if (!Array.isArray(value) || !value.every(item => typeof item === "string")) {
+      fail("Kunci data-site-list harus berupa daftar teks di data/site.js: " + match[1]);
+    }
+  }
+
+  if (typeof site.phoneDisplay !== "string" || !/^[0-9]{8,15}$/.test(site.phoneDisplay)) {
+    fail("Nomor tampilan telepon tidak valid di data/site.js");
+  }
+  if (typeof site.phoneUrl !== "string" || !/^tel:\+[0-9]{8,15}$/.test(site.phoneUrl)) {
+    fail("URL telepon harus memakai skema tel: dan nomor internasional");
+  }
+
+  if (failures.length === 0) pass("URL, data misi, navigasi, katalog, konten dinamis dan kunci tautan valid");
 }
 
 const jsFiles = walkFiles(".", [".js", ".mjs", ".cjs"]);
