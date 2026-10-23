@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Pusat informasi The Choco Studios: identitas, produk, proyek, teknologi, dan kontak.">
+  <title>The Choco Studios — Information</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080b14;
+      --sidebar: #0c101c;
+      --panel: #111625;
+      --panel-hover: #171e31;
+      --border: rgba(255,255,255,.075);
+      --text: #eef2ff;
+      --muted: #8993ad;
+      --blue: #638cff;
+      --purple: #a16bff;
+      --gradient: linear-gradient(115deg, #648bff, #a76cff);
+      --content: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0; min-height: 100vh; background: var(--bg); color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+    .site-shell { min-height: 100vh; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; height: 72px; display: flex; align-items: center;
+      border-bottom: 1px solid var(--border); background: rgba(8,11,20,.86); backdrop-filter: blur(18px);
+    }
+    .topbar-inner { width: min(var(--content), calc(100% - 48px)); margin: auto; display: flex; align-items: center; gap: 32px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; }
+    .brand-mark {
+      display: grid; place-items: center; width: 39px; height: 39px; border-radius: 14px;
+      background: var(--gradient); color: white; font-size: 14px; font-weight: 850; letter-spacing: -1px;
+      box-shadow: 0 0 25px rgba(111,112,255,.18);
+    }
+    .brand-copy { display: flex; flex-direction: column; gap: 3px; }
+    .brand-name { font-size: 14px; font-weight: 760; letter-spacing: -.35px; }
+    .brand-sub { color: var(--muted); font-size: 10px; }
+    .nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .nav a { padding: 10px 11px; color: #aab4cd; border: 1px solid transparent; border-radius: 10px; font-size: 12px; transition: .2s; }
+    .nav a:hover, .nav a[aria-current="location"] { color: white; background: rgba(125,143,255,.09); border-color: rgba(125,143,255,.1); }
+    .header-contact {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; border: 1px solid rgba(125,145,255,.28);
+      border-radius: 11px; background: linear-gradient(110deg, rgba(89,119,255,.17), rgba(153,91,255,.12));
+      font-size: 12px; font-weight: 650; transition: .2s; flex-shrink: 0;
+    }
+    .header-contact:hover { border-color: rgba(145,145,255,.65); transform: translateY(-1px); }
+    .menu-toggle { display: none; width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 11px; background: rgba(255,255,255,.025); cursor: pointer; }
+    main { overflow: hidden; }
+    .container { width: min(var(--content), calc(100% - 48px)); margin: 0 auto; }
+    .hero {
+      position: relative; min-height: 590px; display: flex; align-items: center; padding: 90px 0 82px;
+      background: radial-gradient(ellipse at 75% 22%, rgba(95,91,220,.15), transparent 36%),
+                  radial-gradient(ellipse at 14% 5%, rgba(66,110,220,.12), transparent 35%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 380px; height: 380px; right: -160px; bottom: -230px;
+      border: 1px solid rgba(141,139,255,.12); border-radius: 50%; box-shadow: 0 0 0 38px rgba(141,139,255,.025), 0 0 0 78px rgba(141,139,255,.02);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 22px; color: #aaa9ff; font-size: 10px; font-weight: 780; letter-spacing: 2px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--gradient); }
+    h1 { max-width: 760px; margin: 0; font-size: clamp(42px, 7vw, 76px); line-height: 1.03; letter-spacing: -3.5px; font-weight: 780; }
+    .gradient-text { color: transparent; background: linear-gradient(100deg, #7ea5ff 10%, #b69aff 58%, #e2a5ff 100%); background-clip: text; -webkit-background-clip: text; }
+    .hero-description { max-width: 610px; margin: 24px 0 30px; color: #9aa5bf; font-size: 15px; line-height: 1.9; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; padding: 0 16px; border: 1px solid var(--border); border-radius: 12px; font-size: 12px; font-weight: 680; transition: .2s; }
+    .button-primary { border-color: rgba(125,145,255,.32); background: linear-gradient(110deg, rgba(89,119,255,.22), rgba(153,91,255,.17)); }
+    .button:hover { transform: translateY(-2px); border-color: rgba(145,145,255,.6); }
+    .button-secondary { color: #c1c9dd; background: rgba(255,255,255,.025); }
+    .section { padding: 86px 0; border-bottom: 1px solid var(--border); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+    .section-kicker { margin-bottom: 11px; color: #a7a5ff; font-size: 10px; font-weight: 760; letter-spacing: 1.8px; text-transform: uppercase; }
+    h2 { margin: 0; font-size: clamp(27px, 4vw, 38px); line-height: 1.16; letter-spacing: -1.25px; }
+    .section-intro { max-width: 550px; margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; color: #b5baff; font-size: 12px; font-weight: 650; white-space: nowrap; }
+    .text-link:hover { color: white; }
+    .overview-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .overview-card, .product-card, .placeholder-card {
+      position: relative; min-width: 0; padding: 23px; border: 1px solid var(--border); border-radius: 17px;
+      background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); transition: .22s;
+    }
+    .overview-card:hover, .product-card:hover { transform: translateY(-3px); border-color: rgba(126,139,255,.35); background: linear-gradient(145deg, rgba(108,120,255,.075), rgba(255,255,255,.012)); }
+    .card-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 20px; border: 1px solid rgba(138,133,255,.25); border-radius: 13px; background: linear-gradient(135deg, rgba(98,137,255,.18), rgba(164,102,255,.14)); color: #c4c5ff; }
+    .card-icon svg { width: 20px; height: 20px; }
+    h3 { margin: 0; font-size: 15px; letter-spacing: -.25px; }
+    .card-copy { margin: 10px 0 0; color: #8f9ab5; font-size: 12px; line-height: 1.8; }
+    .section-placeholder { display: grid; grid-template-columns: minmax(0,1fr) minmax(220px,.65fr); gap: 28px; align-items: center; padding: 30px; border: 1px solid var(--border); border-radius: 18px; background: radial-gradient(ellipse at 100% 0%, rgba(95,91,220,.09), transparent 45%), rgba(255,255,255,.015); }
+    .placeholder-note { padding: 17px; border: 1px dashed rgba(135,148,191,.22); border-radius: 13px; color: #7f8aa4; font-size: 11px; line-height: 1.8; }
+    .placeholder-note strong { display: block; margin-bottom: 5px; color: #b2bdd5; font-size: 11px; }
+    .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .product-top { display: flex; align-items: center; gap: 12px; margin-bottom: 17px; }
+    .product-symbol { display: grid; place-items: center; width: 43px; height: 43px; flex-shrink: 0; border: 1px solid rgba(138,133,255,.25); border-radius: 14px; background: var(--gradient); color: white; font-weight: 800; }
+    .product-label { display: block; margin-top: 5px; color: #78849f; font-size: 10px; }
+    .status-tag { display: inline-flex; margin-top: 16px; padding: 5px 8px; border: 1px solid rgba(135,148,191,.18); border-radius: 7px; color: #9ca8c1; font-size: 9px; }
+    .contact-panel { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 30px; border: 1px solid rgba(125,145,255,.2); border-radius: 18px; background: linear-gradient(115deg, rgba(89,119,255,.09), rgba(153,91,255,.065)); }
+    .contact-panel p { max-width: 570px; margin: 10px 0 0; color: #9aa5bf; font-size: 12px; line-height: 1.8; }
+    footer { padding: 27px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-copy { color: #737f99; font-size: 10px; line-height: 1.7; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 17px; color: #8e99b3; font-size: 11px; }
+    .footer-links a:hover { color: white; }
+    .menu-backdrop { display: none; }
+    @media (max-width: 1040px) {
+      .topbar-inner { gap: 18px; }
+      .nav a { padding: 9px 8px; font-size: 11px; }
+      .header-contact { padding: 10px; }
+      .overview-grid, .product-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .nav .nav-secondary { display: none; }
+    }
+    @media (max-width: 760px) {
+      .topbar { height: 66px; }
+      .topbar-inner, .container { width: min(100% - 32px, var(--content)); }
+      .menu-toggle { display: grid; place-items: center; margin-left: auto; }
+      .header-contact { display: none; }
+      .nav {
+        display: none; position: fixed; top: 65px; left: 0; right: 0; margin: 0; padding: 13px 16px 18px;
+        flex-direction: column; align-items: stretch; gap: 3px; background: rgba(12,16,28,.98); border-bottom: 1px solid var(--border);
+        box-shadow: 0 20px 35px rgba(0,0,0,.25);
+      }
+      .nav.open { display: flex; }
+      .nav .nav-secondary { display: block; }
+      .nav a { padding: 12px; font-size: 13px; }
+      .hero { min-height: 510px; padding: 76px 0; }
+      h1 { letter-spacing: -2px; }
+      .hero-description { font-size: 13px; }
+      .section { padding: 64px 0; }
+      .section-head { align-items: start; flex-direction: column; gap: 15px; }
+      .overview-grid, .product-grid { grid-template-columns: 1fr; }
+      .section-placeholder { grid-template-columns: 1fr; padding: 22px; }
+      .contact-panel { align-items: flex-start; flex-direction: column; padding: 24px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#home" aria-label="The Choco Studios, beranda">
+          <span class="brand-mark" aria-hidden="true">TCS</span>
+          <span class="brand-copy">
+            <span class="brand-name">The Choco Studios</span>
+            <span class="brand-sub">Information Center</span>
+          </span>
+        </a>
+        <nav class="nav" id="site-nav" aria-label="Navigasi utama">
+          <a href="#about">Tentang</a>
+          <a href="#products">Produk</a>
+          <a href="#projects">Proyek</a>
+          <a class="nav-secondary" href="#technology">Teknologi</a>
+          <a class="nav-secondary" href="#safety">Keamanan &amp; Privasi</a>
+          <a class="nav-secondary" href="#updates">Pembaruan</a>
+          <a href="#contact">Kontak</a>
+        </nav>
+        <a class="header-contact" href="mailto:thechocostudio@gmail.com">Hubungi TCS <span aria-hidden="true">↗</span></a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-nav">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <div class="eyebrow">The Choco Studios</div>
+            <h1>Ideas become<br><span class="gradient-text">things people can use.</span></h1>
+            <p class="hero-description">Pusat informasi The Choco Studios. Kenali identitas kami, jelajahi produk dan proyek, serta temukan informasi tentang pendekatan pengembangan dan privasi.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#products">Jelajahi produk <span aria-hidden="true">↗</span></a>
+              <a class="button button-secondary" href="#about">Tentang TCS <span aria-hidden="true">↓</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="explore-title">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Explore TCS</div>
+              <h2 id="explore-title">Informasi yang kamu cari.</h2>
+              <p class="section-intro">Jelajahi bagian utama The Choco Studios. Informasi tiap bagian akan dilengkapi bertahap berdasarkan keterangan yang dikonfirmasi.</p>
+            </div>
+          </div>
+          <div class="overview-grid">
+            <a class="overview-card" href="#about">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5.5 19c.6-3.1 2.8-4.8 6.5-4.8s5.9 1.7 6.5 4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <h3>Tentang TCS</h3><p class="card-copy">Identitas, visi, misi, dan prinsip yang membentuk The Choco Studios.</p>
+            </a>
+            <a class="overview-card" href="#products">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+              <h3>Produk</h3><p class="card-copy">Direktori produk, fungsi utama, status, dan tautan resminya.</p>
+            </a>
+            <a class="overview-card" href="#projects">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h4l2 2h7A1.5 1.5 0 0 1 20 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+              <h3>Proyek</h3><p class="card-copy">Gambaran proyek yang sedang berjalan dan yang layak diperkenalkan.</p>
+            </a>
+            <a class="overview-card" href="#technology">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4M14 5l-4 14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <h3>Teknologi</h3><p class="card-copy">Teknologi dan pendekatan teknis yang digunakan dalam produk.</p>
+            </a>
+            <a class="overview-card" href="#safety">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 19 6v5.6c0 4.2-2.7 7.2-7 9-4.3-1.8-7-4.8-7-9V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <h3>Keamanan &amp; Privasi</h3><p class="card-copy">Informasi terkait perlindungan data, batasan, dan kebijakan yang relevan.</p>
+            </a>
+            <a class="overview-card" href="#updates">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5.5h14v14H5zM8 3.5v4M16 3.5v4M5 9.5h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8.5 13h3M8.5 16h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <h3>Pembaruan</h3><p class="card-copy">Catatan rilis dan perubahan produk yang sudah dikonfirmasi.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <div class="section-head"><div><div class="section-kicker">About</div><h2 id="about-title">Tentang The Choco Studios</h2><p class="section-intro">Bagian ini akan menjelaskan identitas TCS secara resmi, dengan isi yang ditentukan bersama sebelum dipublikasikan.</p></div></div>
+          <div class="section-placeholder">
+            <div><h3>Identitas dan arah TCS</h3><p class="card-copy">Ruang untuk penjelasan tentang siapa kami, apa yang kami bangun, visi jangka panjang, dan prinsip yang digunakan dalam mengembangkan karya.</p></div>
+            <div class="placeholder-note"><strong>Konten belum difinalisasi</strong>Informasi resmi bagian ini akan disusun setelah konfirmasi identitas dari pemilik TCS.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="products" aria-labelledby="products-title">
+        <div class="container">
+          <div class="section-head"><div><div class="section-kicker">Products</div><h2 id="products-title">Produk TCS</h2><p class="section-intro">Katalog ini menjadi tempat untuk memperkenalkan produk yang memang siap atau pantas ditampilkan ke publik.</p></div></div>
+          <div class="product-grid">
+            <article class="product-card"><div class="product-top"><span class="product-symbol" aria-hidden="true">C</span><div><h3>Choco AI</h3><span class="product-label">Asisten AI</span></div></div><p class="card-copy">Informasi lengkap tentang fungsi, kemampuan, dan batasan produk akan ditambahkan setelah bagian produk dibahas.</p><span class="status-tag">Detail menyusul</span></article>
+            <article class="product-card"><div class="product-top"><span class="product-symbol" aria-hidden="true">S</span><div><h3>Sara AI</h3><span class="product-label">Asisten Help Center</span></div></div><p class="card-copy">Penjelasan produk dan hubungan Sara AI dengan pusat bantuan akan dikonfirmasi sebelum dipublikasikan.</p><span class="status-tag">Detail menyusul</span></article>
+            <article class="product-card"><div class="product-top"><span class="product-symbol" aria-hidden="true">K</span><div><h3>KasirKita</h3><span class="product-label">Aplikasi kasir</span></div></div><p class="card-copy">Informasi fitur dan status rilis akan disesuaikan dengan kondisi aplikasi yang sebenarnya.</p><span class="status-tag">Detail menyusul</span></article>
+            <article class="product-card"><div class="product-top"><span class="product-symbol" aria-hidden="true">CG</span><div><h3>Chocobot Guardian</h3><span class="product-label">Proyek perlindungan bot</span></div></div><p class="card-copy">Deskripsi, cakupan fungsi, dan status proyek akan diverifikasi sebelum menjadi informasi publik.</p><span class="status-tag">Detail menyusul</span></article>
+            <article class="product-card"><div class="product-top"><span class="product-symbol" aria-hidden="true">P</span><div><h3>Privacy Guardian</h3><span class="product-label">Proyek privasi Windows</span></div></div><p class="card-copy">Penjelasan fitur dan kompatibilitas akan ditambahkan berdasarkan kondisi produk yang terverifikasi.</p><span class="status-tag">Detail menyusul</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="container"><div class="section-head"><div><div class="section-kicker">Projects</div><h2 id="projects-title">Proyek dan pengembangan</h2><p class="section-intro">Bagian untuk karya yang masih dalam proses, eksperimen, atau belum diposisikan sebagai produk rilis.</p></div></div><div class="section-placeholder"><div><h3>Perjalanan sebuah proyek</h3><p class="card-copy">Nantinya bagian ini dapat memuat tujuan proyek, tahap pengembangan, dan pembaruan yang memang boleh dibagikan ke publik.</p></div><div class="placeholder-note"><strong>Konten belum difinalisasi</strong>Proyek internal atau informasi yang belum layak diumumkan tidak akan ditampilkan di sini.</div></div></div>
+      </section>
+
+      <section class="section" id="technology" aria-labelledby="technology-title">
+        <div class="container"><div class="section-head"><div><div class="section-kicker">Technology</div><h2 id="technology-title">Teknologi dan pendekatan</h2><p class="section-intro">Penjelasan teknis yang membantu pengunjung memahami bagaimana produk dibangun, tanpa mengungkap rahasia atau konfigurasi sensitif.</p></div></div><div class="section-placeholder"><div><h3>Bagaimana produk dibangun</h3><p class="card-copy">Bagian ini dapat menjelaskan pilihan teknologi, arsitektur tingkat tinggi, dan alasan di balik keputusan teknis untuk produk tertentu.</p></div><div class="placeholder-note"><strong>Konten belum difinalisasi</strong>Teknologi hanya akan dicantumkan setelah diverifikasi per produk.</div></div></div>
+      </section>
+
+      <section class="section" id="safety" aria-labelledby="safety-title">
+        <div class="container"><div class="section-head"><div><div class="section-kicker">Safety &amp; Privacy</div><h2 id="safety-title">Keamanan dan privasi</h2><p class="section-intro">Informasi yang jelas tentang cara produk menangani data, batasan penggunaan, dan kebijakan yang berlaku.</p></div></div><div class="section-placeholder"><div><h3>Penjelasan yang bisa diperiksa</h3><p class="card-copy">Setiap klaim keamanan atau privasi harus sesuai implementasi produk dan dokumentasi yang tersedia, bukan sekadar janji pemasaran.</p></div><div class="placeholder-note"><strong>Konten belum difinalisasi</strong>Kebijakan spesifik akan ditulis setelah cakupan dan praktik tiap layanan dikonfirmasi.</div></div></div>
+      </section>
+
+      <section class="section" id="updates" aria-labelledby="updates-title">
+        <div class="container"><div class="section-head"><div><div class="section-kicker">Updates</div><h2 id="updates-title">Pembaruan</h2><p class="section-intro">Tempat untuk catatan rilis, perubahan penting, dan kabar proyek yang sudah dikonfirmasi.</p></div></div><div class="section-placeholder"><div><h3>Catatan perkembangan TCS</h3><p class="card-copy">Pembaruan akan ditambahkan ketika ada perubahan yang cukup berarti untuk dicatat dan dibagikan.</p></div><div class="placeholder-note"><strong>Belum ada catatan rilis</strong>Bagian ini tidak akan diisi dengan tanggal atau pengumuman rekaan.</div></div></div>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-title">
+        <div class="container"><div class="contact-panel"><div><div class="section-kicker">Contact</div><h2 id="contact-title">Hubungi The Choco Studios</h2><p>Untuk keperluan bisnis, pertanyaan, masukan, atau komunikasi terkait karya TCS, gunakan alamat kontak resmi berikut.</p></div><a class="button button-primary" href="mailto:thechocostudio@gmail.com">thechocostudio@gmail.com <span aria-hidden="true">↗</span></a></div></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-copy">© <span id="year"></span> The Choco Studios<br>Information Center</div>
+        <nav class="footer-links" aria-label="Navigasi footer"><a href="#about">Tentang</a><a href="#products">Produk</a><a href="#safety">Keamanan &amp; Privasi</a><a href="#contact">Kontak</a></nav>
+      </div>
+    </footer>
+  </div>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const siteNav = document.getElementById('site-nav');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
+    });
+    siteNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        siteNav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Buka menu');
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
