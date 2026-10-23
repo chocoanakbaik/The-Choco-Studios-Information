@@ -1,8 +1,10 @@
 export const site = {
   brand: "The Choco Studios",
   shortName: "TCS",
-  tagline: "Information Center",
+  tagline: "Pusat Informasi",
   email: "thechocostudio@gmail.com",
+  phoneDisplay: "085150835618",
+  phoneUrl: "tel:+6285150835618",
   chocoAiUrl: "https://choco-ai-platform.netlify.app/",
   helpCenterUrl: "https://choco-ai-help-center.netlify.app/",
   contactFormUrl: "https://forms.gle/LUtY9cyFQKVizA1A6",
