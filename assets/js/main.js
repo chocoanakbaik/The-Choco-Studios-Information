@@ -1,4 +1,6 @@
 import { initMenu } from "./menu.js";
+import { renderCatalog } from "./features/catalog.js";
+import { renderMissions } from "./features/missions.js";
 import { products } from "../../data/products.js";
 import { site } from "../../data/site.js";
 
@@ -26,60 +28,11 @@ async function loadComponents() {
   }
 }
 
-function renderProducts() {
-  const list = document.getElementById("product-list");
-  if (!list) return;
-  list.replaceChildren();
-  for (const product of products) {
-    const article = document.createElement("article");
-    article.className = "product-card";
-    const top = document.createElement("div");
-    top.className = "product-top";
-    const symbol = document.createElement("span");
-    symbol.className = "product-symbol";
-    symbol.setAttribute("aria-hidden", "true");
-    symbol.textContent = product.symbol;
-    const identity = document.createElement("div");
-    const title = document.createElement("h3");
-    title.textContent = product.name;
-    const category = document.createElement("span");
-    category.className = "product-label";
-    category.textContent = product.category;
-    identity.append(title, category);
-    top.append(symbol, identity);
-    const description = document.createElement("p");
-    description.className = "card-copy";
-    description.textContent = product.description;
-    const status = document.createElement("span");
-    status.className = "status-tag";
-    status.textContent = product.status;
-    article.append(top, description, status);
-    list.append(article);
-  }
-}
-
-function renderMissions() {
-  const list = document.getElementById("mission-list");
-  if (!list || !Array.isArray(site.missions)) return;
-  list.replaceChildren();
-  site.missions.forEach((mission, index) => {
-    const article = document.createElement("article");
-    article.className = "overview-card";
-    const title = document.createElement("h3");
-    title.textContent = `${index + 1}. ${mission.title}`;
-    const description = document.createElement("p");
-    description.className = "card-copy";
-    description.textContent = mission.text;
-    article.append(title, description);
-    list.append(article);
-  });
-}
-
 try {
   await loadComponents();
   initMenu();
-  renderProducts();
-  renderMissions();
+  renderCatalog(products);
+  renderMissions(site.missions);
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 } catch (error) {
