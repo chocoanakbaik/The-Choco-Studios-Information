@@ -37,7 +37,8 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 │           ├── catalog.js
 │           ├── links.js
 │           ├── missions.js
-│           └── navigation.js
+│           ├── navigation.js
+│           └── site-content.js
 ├── data/
 │   ├── site.js
 │   ├── navigation.js
@@ -69,7 +70,7 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 - `assets/css/responsive.css`: breakpoint layar dan reduced motion; menu tetap dapat diakses pada rentang tablet.
 - `assets/js/main.js`: memuat komponen dan menghubungkan fitur dengan data.
 - `assets/js/menu.js`: buka/tutup menu, penutupan lewat tautan atau Escape, dan sinkronisasi saat ukuran layar berubah.
-- `assets/js/features/`: fungsi untuk katalog produk, tautan situs, daftar misi, dan navigasi.
+- `assets/js/features/`: fungsi untuk katalog produk, tautan situs, daftar misi, navigasi, dan pengisian konten dari `data/site.js`.
 - `data/site.js`: identitas, visi, misi, kontak, bahasa, dan pasar.
 - `data/navigation.js`: satu sumber data untuk label, target, dan kelompok menu.
 - `data/products.js`: katalog produk, kategori, status, simbol, dan deskripsi.
