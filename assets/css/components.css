@@ -1,6 +1,9 @@
 .brand-mark { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 14px; background: var(--gradient); color: white; font-size: 14px; font-weight: 850; letter-spacing: -1px; box-shadow: 0 0 25px rgba(111,112,255,.18); }
 .nav a { padding: 10px 11px; color: #aab4cd; border: 1px solid transparent; border-radius: 10px; font-size: 12px; transition: .2s; }
 .nav a:hover, .nav a[aria-current="location"] { color: white; background: rgba(125,143,255,.09); border-color: rgba(125,143,255,.1); }
+.menu-icon-close { display: none; }
+.menu-toggle[aria-expanded="true"] .menu-icon-lines { display: none; }
+.menu-toggle[aria-expanded="true"] .menu-icon-close { display: block; }
 .header-contact { display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; border: 1px solid rgba(125,145,255,.28); border-radius: 11px; background: linear-gradient(110deg, rgba(89,119,255,.17), rgba(153,91,255,.12)); font-size: 12px; font-weight: 650; transition: .2s; flex-shrink: 0; }
 .header-contact:hover { border-color: rgba(145,145,255,.65); transform: translateY(-1px); }
 .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 22px; color: #aaa9ff; font-size: 10px; font-weight: 780; letter-spacing: 2px; text-transform: uppercase; }
