@@ -7,6 +7,10 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 ```text
 .
 ├── index.html
+├── 404.html
+├── favicon.svg
+├── robots.txt
+├── _headers
 ├── package.json
 ├── .github/
 │   └── workflows/
@@ -64,7 +68,11 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 
 ## Pembagian tanggung jawab
 
-- `index.html`: metadata halaman, stylesheet, landmark utama, dan titik pemasangan komponen. Tidak menampung seluruh konten, CSS, atau JavaScript.
+- `index.html`: metadata halaman, Open Graph/Twitter untuk pratinjau tautan, favicon, stylesheet, landmark utama, dan titik pemasangan komponen. Tidak menampung seluruh konten, CSS, atau JavaScript.
+- `favicon.svg`: identitas grafis TCS pada tab browser dan daftar bookmark.
+- `404.html`: halaman tidak ditemukan yang berdiri sendiri, dengan navigasi kembali ke beranda dan kanal pelaporan tautan rusak; tidak bergantung pada JavaScript aplikasi.
+- `_headers`: header keamanan dasar untuk deploy Netlify, termasuk MIME sniffing, kebijakan referrer, pencegahan framing, serta pembatasan izin browser.
+- `robots.txt`: aturan perayapan dasar untuk halaman publik.
 - `components/`: tiap bagian halaman berada di berkas terpisah; header hanya menyediakan tempat untuk menu dan tombolnya.
 - `assets/css/tokens.css`: warna, ukuran konten, dan token desain.
 - `assets/css/base.css`: aturan dasar, tipografi, fokus keyboard, dan tautan lewati ke konten utama.
@@ -98,6 +106,8 @@ node scripts/validate-site.mjs
 Pemeriksaan ini membantu menemukan berkas hilang, tautan internal yang rusak, ID duplikat, referensi aksesibilitas yang tidak cocok, data produk yang tidak lengkap, impor yang rusak, atau kesalahan sintaks JavaScript. Pemeriksaan ini bersifat statis: tidak membuka browser, tidak menguji tampilan responsif secara visual, dan tidak memverifikasi apakah layanan atau tautan eksternal benar-benar aktif.
 
 Saat situs berjalan, panel diagnostik mengidentifikasi error JavaScript client dan Promise yang gagal, kegagalan aset, HTTP 404/401/403/408/429/5xx, serta kegagalan koneksi tanpa respons. Panel menyertakan waktu, ID laporan, konteks, pesan teknis, saran pemeriksaan, dan jejak JavaScript bila tersedia; tombol **Salin laporan** memudahkan pengguna mengirim detailnya secara manual. Detail ditampilkan di browser dan konsol pengembang, bukan dikirim ke server. Karena situs ini statis, panel tidak dapat membaca log server/Netlify atau memastikan penyebab koneksi tanpa respons; pemeriksaan sisi hosting tetap dilakukan dari dashboard dan log penyedia.
+
+Halaman memakai favicon SVG, metadata Open Graph/Twitter dasar, halaman 404 mandiri, robots.txt, dan header keamanan dasar untuk Netlify. Domain publik resmi belum dikonfirmasi dalam konfigurasi repo, jadi URL canonical, og:url, og:image, dan sitemap sengaja belum dibuat agar tidak mengarahkan mesin pencari atau pratinjau tautan ke alamat yang salah.
 
 ## Aturan konten dan verifikasi
 
