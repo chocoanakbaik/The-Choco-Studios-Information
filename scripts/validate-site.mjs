@@ -33,6 +33,10 @@ function walkFiles(dir, extensions) {
 const requiredFiles = [
   "index.html",
   "404.html",
+  "products/choco-ai.html",
+  "products/kasirkita.html",
+  "products/chocobot-guardian.html",
+  "products/privacy-guardian.html",
   "favicon.svg",
   "robots.txt",
   "_headers",
@@ -55,6 +59,7 @@ const requiredFiles = [
   "assets/css/layout.css",
   "assets/css/components.css",
   "assets/css/diagnostics.css",
+  "assets/css/product-pages.css",
   "assets/css/responsive.css",
   "assets/js/diagnostics.js",
   "assets/js/main.js",
@@ -80,6 +85,13 @@ const requiredFiles = [
   "docs/questions/updates-maintenance.md"
 ];
 
+const productPageFiles = [
+  "products/choco-ai.html",
+  "products/kasirkita.html",
+  "products/chocobot-guardian.html",
+  "products/privacy-guardian.html"
+];
+
 for (const file of requiredFiles) {
   if (!existsSync(path.join(root, file))) fail(`File wajib hilang: ${file}`);
 }
@@ -89,6 +101,8 @@ const index = read("index.html");
 const custom404 = read("404.html");
 const robots = read("robots.txt");
 const headers = read("_headers");
+const catalog = read("assets/js/features/catalog.js");
+const productPages = productPageFiles.map(file => ({ file, content: read(file) }));
 const main = read("assets/js/main.js");
 const diagnostics = read("assets/js/diagnostics.js");
 const diagnosticStyles = read("assets/css/diagnostics.css");
@@ -119,6 +133,48 @@ for (const header of ["X-Content-Type-Options: nosniff", "Referrer-Policy: stric
 }
 if (!robots.includes("User-agent: *") || !robots.includes("Allow: /")) {
   fail("robots.txt belum memiliki aturan perayapan dasar");
+}
+if (!catalog.includes("product.detailsUrl") || !catalog.includes('textContent = "Lihat detail"')) {
+  fail("Kartu produk belum menyediakan tautan ke halaman detail");
+}
+for (const document of productPages) {
+  const content = document.content;
+  if (!/<html\s+lang="id"/i.test(content) ||
+      !/<title>[^<]+<\/title>/i.test(content) ||
+      !/<meta\s+name="description"\s+content="[^"]+"/i.test(content) ||
+      !content.includes('property="og:title"') ||
+      !content.includes('name="twitter:card"') ||
+      !content.includes('rel="stylesheet" href="../assets/css/product-pages.css"') ||
+      !content.includes('href="../favicon.svg"') ||
+      !content.includes('class="skip-link" href="#main"') ||
+      !content.includes('id="main"')) {
+    fail("Metadata, stylesheet, favicon, atau aksesibilitas dasar tidak lengkap: " + document.file);
+  }
+  if (/<script\b/i.test(content)) fail("Halaman detail produk seharusnya dapat dibaca tanpa JavaScript: " + document.file);
+  const pageIds = new Set();
+  for (const match of content.matchAll(/\bid="([^"]+)"/g)) {
+    if (pageIds.has(match[1])) fail("ID HTML duplikat pada " + document.file + ": #" + match[1]);
+    pageIds.add(match[1]);
+  }
+  for (const match of content.matchAll(/\baria-labelledby="([^"]+)"/g)) {
+    for (const id of match[1].split(/\s+/).filter(Boolean)) {
+      if (!pageIds.has(id)) fail("aria-labelledby merujuk ID yang tidak ada pada " + document.file + ": #" + id);
+    }
+  }
+  for (const match of content.matchAll(/\b(?:href|src)=[\"']([^\"']+)[\"']/g)) {
+    const target = match[1].trim();
+    if (!target || target.startsWith("#")) {
+      if (target.startsWith("#") && !pageIds.has(target.slice(1))) {
+        fail("Tautan jangkar internal tidak memiliki target di " + document.file + ": " + target);
+      }
+      continue;
+    }
+    if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(target)) continue;
+    const localTarget = target.split(/[?#]/, 1)[0];
+    if (!localTarget) continue;
+    const resolved = path.resolve(path.dirname(path.join(root, document.file)), localTarget);
+    if (!existsSync(resolved)) fail("Referensi lokal tidak ditemukan pada " + document.file + ": " + target);
+  }
 }
 if (!/id="site-main"/.test(index)) fail("Landmark konten utama #site-main tidak ditemukan");
 if (!/class="skip-link"\s+href="#site-main"/.test(index)) fail("Tautan lewati ke konten utama tidak ditemukan");
@@ -312,14 +368,22 @@ if (site && navigation && products) {
   } else {
     const names = new Set();
     products.forEach((product, index) => {
-      for (const field of ["name", "category", "symbol", "status", "description"]) {
+      for (const field of ["name", "category", "symbol", "status", "description", "detailsUrl"]) {
         if (typeof product?.[field] !== "string" || !product[field].trim()) {
           fail(`Produk nomor ${index + 1} belum memiliki field ${field}`);
         }
       }
       if (product?.name && names.has(product.name)) fail(`Nama produk duplikat: ${product.name}`);
       if (product?.name) names.add(product.name);
+      if (product?.detailsUrl && !existsSync(path.join(root, product.detailsUrl))) {
+        fail("Halaman detail tidak ditemukan untuk produk " + product.name + ": " + product.detailsUrl);
+      }
     });
+    for (const page of productPageFiles) {
+      if (!products.some(product => product?.detailsUrl === page)) {
+        fail("Halaman detail belum terhubung dari data/products.js: " + page);
+      }
+    }
   }
 
   for (const match of allComponentMarkup.matchAll(/data-link-key=["']([^"']+)["']/g)) {
