@@ -332,7 +332,12 @@ for (const document of htmlDocuments) {
     if (!target || target.startsWith("#") || /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(target)) continue;
     const relativeTarget = target.split(/[?#]/, 1)[0];
     if (!relativeTarget) continue;
-    const resolved = path.resolve(path.dirname(path.join(root, document.file)), relativeTarget);
+    // Komponen dimasukkan ke DOM index.html; URL relatifnya dihitung dari URL halaman utama,
+    // bukan dari lokasi file komponen di dalam repo.
+    const sourceDirectory = document.file.startsWith("components/")
+      ? root
+      : path.dirname(path.join(root, document.file));
+    const resolved = path.resolve(sourceDirectory, relativeTarget);
     if (!existsSync(resolved)) fail(`Aset atau tautan lokal tidak ditemukan di ${document.file}: ${target}`);
   }
 }
