@@ -76,7 +76,7 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 - `docs/content-plan.md`: backlog konten dan aturan verifikasi.
 - `docs/questions/`: bank pertanyaan terkonfirmasi, pertanyaan tertunda, serta pertanyaan masa depan per bidang.
 - `docs/questionnaire.md`: indeks ke bank pertanyaan.
-- `scripts/validate-site.mjs`: pemeriksaan struktur berkas, impor JavaScript, target tautan, menu responsif, dan tautan dokumentasi.
+- `scripts/validate-site.mjs`: pemeriksaan file wajib, titik pemasangan komponen, ID/anchor dan referensi ARIA, aset lokal, impor dan sintaks JavaScript, bentuk data situs/produk, URL konfigurasi, serta tautan relatif dokumentasi.
 - `.github/workflows/validate-site.yml`: menjalankan pemeriksaan statis di GitHub Actions pada push ke `main` dan pull request.
 
 ## Menjalankan dan memvalidasi
@@ -89,7 +89,7 @@ Pemeriksaan statis tanpa dependensi pihak ketiga:
 node scripts/validate-site.mjs
 ```
 
-Pemeriksaan ini membantu menemukan berkas hilang, impor yang rusak, target menu yang tidak ada, atau kesalahan sintaks JavaScript. Pemeriksaan statis tidak membuktikan bahwa situs sudah diuji di browser atau layanan eksternal sedang aktif.
+Pemeriksaan ini membantu menemukan berkas hilang, tautan internal yang rusak, ID duplikat, referensi aksesibilitas yang tidak cocok, data produk yang tidak lengkap, impor yang rusak, atau kesalahan sintaks JavaScript. Pemeriksaan ini bersifat statis: tidak membuka browser, tidak menguji tampilan responsif secara visual, dan tidak memverifikasi apakah layanan atau tautan eksternal benar-benar aktif.
 
 ## Aturan konten dan verifikasi
 
