@@ -57,6 +57,7 @@ const requiredFiles = [
   "assets/js/features/links.js",
   "assets/js/features/missions.js",
   "assets/js/features/navigation.js",
+  "assets/js/features/active-navigation.js",
   "assets/js/features/site-content.js",
   "data/site.js",
   "data/navigation.js",
@@ -93,6 +94,10 @@ if (!/id="site-nav"/.test(header) || !/aria-controls="site-nav"/.test(header)) {
   fail("Kontrol menu tidak terhubung dengan elemen navigasi");
 }
 if (!/renderNavigation\(navigation\)/.test(main)) fail("Data navigasi belum dirender oleh main.js");
+if (!/import\s*\{\s*initActiveNavigation\s*\}\s*from\s*"\.\/features\/active-navigation\.js"/.test(main) ||
+    !/initActiveNavigation\(\)/.test(main)) {
+  fail("Perilaku navigasi aktif belum dihubungkan di main.js");
+}
 if (!/import\s*\{\s*applySiteContent\s*\}\s*from\s*"\.\/features\/site-content\.js"/.test(main) ||
     !/applySiteContent\(site\)/.test(main)) {
   fail("Konten berbasis data belum diterapkan setelah komponen dimuat");
