@@ -83,6 +83,7 @@ const index = read("index.html");
 const main = read("assets/js/main.js");
 const header = read("components/header.html");
 const responsive = read("assets/css/responsive.css");
+const componentStyles = read("assets/css/components.css");
 const menu = read("assets/js/menu.js");
 
 if (!/<html\s+lang="id"/i.test(index)) fail("index.html harus menetapkan Bahasa Indonesia sebagai bahasa utama");
@@ -112,6 +113,10 @@ if (!responsive.includes("@media (max-width: 1040px)") ||
 }
 if (!/window\.innerWidth\s*>\s*1040/.test(menu)) fail("Breakpoint menu.js tidak sinkron dengan CSS");
 if (!/event\.key === ["']Escape["']/.test(menu)) fail("Menu belum mendukung tombol Escape");
+if (!header.includes('class="menu-icon-lines"') || !header.includes('class="menu-icon-close"') ||
+    !componentStyles.includes('.menu-toggle[aria-expanded="true"] .menu-icon-close { display: block; }')) {
+  fail("Ikon menu tidak mengikuti status aria-expanded");
+}
 if (failures.length === 0) pass("Metadata, landmark aksesibilitas, dan kontrol menu diperiksa");
 
 const componentFiles = [...main.matchAll(/file:\s*["']([^"']+\.html)["']/g)].map(match => match[1]);
