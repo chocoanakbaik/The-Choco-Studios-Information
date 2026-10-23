@@ -94,6 +94,9 @@ async function loadComponents() {
 
   const failures = loaded.filter(item => item?.error);
   if (failures.length) {
+    for (const item of failures) {
+      reportDiagnostic(item.error, "assets/js/main.js · memuat " + item.component.file);
+    }
     const firstError = failures[0].error;
     const aggregate = createLoadError(
       `${failures.length} dari ${components.length} komponen halaman gagal dimuat. Buka panel diagnostik untuk melihat rincian setiap kegagalan.`,
