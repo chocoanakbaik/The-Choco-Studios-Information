@@ -23,16 +23,20 @@ const components = [
 ];
 
 async function loadComponents() {
-  for (const component of components) {
+  const loaded = await Promise.all(components.map(async component => {
     const mount = document.getElementById(component.mount) ||
       document.querySelector(`[data-component="${component.mount}"]`);
-    if (!mount) continue;
+    if (!mount) return null;
 
     const response = await fetch(component.file);
     if (!response.ok) {
       throw new Error(`Gagal memuat ${component.file}: HTTP ${response.status}`);
     }
-    mount.innerHTML = await response.text();
+    return { mount, markup: await response.text() };
+  }));
+
+  for (const component of loaded) {
+    if (component) component.mount.innerHTML = component.markup;
   }
 }
 
