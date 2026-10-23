@@ -1,4 +1,4 @@
-import { cpSync, copyFileSync, existsSync, mkdirSync, readdirSync, rmSync } from "node:fs";
+import { cpSync, copyFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
