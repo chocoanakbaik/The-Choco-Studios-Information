@@ -24,6 +24,7 @@ Dokumen kerja untuk melengkapi pusat informasi. Konten publik hanya diperbarui s
 - Katalog situs membaca data statis dari `data/products.js`; belum ada sinkronisasi otomatis katalog dengan Choco AI.
 - Identitas browser berupa `favicon.svg`, metadata Open Graph/Twitter dasar, halaman 404 mandiri, `robots.txt`, dan header keamanan dasar untuk Netlify sudah tersedia.
 - Domain publik resmi situs informasi belum dikonfirmasi dalam konfigurasi repo. URL canonical, `og:url`, `og:image`, dan sitemap menunggu domain resmi agar tidak memakai alamat yang salah.
+- Empat halaman detail produk terpisah tersedia melalui `products/`. Halaman Choco AI memisahkan fitur katalog dari menu segera hadir; KasirKita, Chocobot Guardian, dan Privacy Guardian secara eksplisit menjelaskan bahwa status rilis atau detail finalnya masih terbatas/berkembang.
 
 ## Perlu diverifikasi atau dilengkapi
 - Apakah Google Form masih aktif dan dapat dipakai oleh publik.
