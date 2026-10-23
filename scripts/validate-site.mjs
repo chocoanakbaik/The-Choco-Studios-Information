@@ -53,7 +53,6 @@ const requiredFiles = [
   "assets/css/diagnostics.css",
   "assets/css/responsive.css",
   "assets/js/diagnostics.js",
-  "assets/js/diagnostics.js",
   "assets/js/main.js",
   "assets/js/menu.js",
   "assets/js/features/catalog.js",
@@ -127,8 +126,19 @@ if (!diagnostics.includes('Respons server (HTTP "') || !diagnostics.includes("st
 }
 if (!diagnosticStyles.includes(".diagnostic-panel[hidden] { display: none; }") ||
     !diagnosticStyles.includes(".diagnostic-fields") ||
-    !diagnosticStyles.includes(".diagnostic-stack")) {
+    !diagnosticStyles.includes(".diagnostic-stack") ||
+    !diagnosticStyles.includes(".diagnostic-actions") ||
+    !diagnosticStyles.includes(".diagnostic-copy-status")) {
   fail("Gaya panel detail diagnostik belum lengkap");
+}
+if (!diagnostics.includes("navigator.clipboard.writeText") || !diagnostics.includes("Salin laporan")) {
+  fail("Laporan diagnostik belum bisa disalin secara eksplisit oleh pengguna");
+}
+if (!diagnostics.includes('code: "HTTP_NOT_FOUND"') ||
+    !diagnostics.includes('code: "HTTP_ACCESS"') ||
+    !diagnostics.includes('code: "HTTP_RATE_LIMIT"') ||
+    !diagnostics.includes('code: "HTTP_TIMEOUT"')) {
+  fail("Pemeriksaan belum memiliki rincian untuk HTTP 404, 401/403, 429, dan 408");
 }
 if (!main.includes("window.TCSDiagnostics") ||
     !main.includes("reportDiagnostic") ||
