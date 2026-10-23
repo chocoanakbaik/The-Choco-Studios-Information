@@ -3,6 +3,9 @@ export const site = {
   shortName: "TCS",
   tagline: "Information Center",
   email: "thechocostudio@gmail.com",
+  chocoAiUrl: "https://choco-ai-platform.netlify.app/",
+  helpCenterUrl: "https://choco-ai-help-center.netlify.app/",
+  contactFormUrl: "",
   languages: {
     primary: "Bahasa Indonesia",
     secondary: "Bahasa Inggris",
