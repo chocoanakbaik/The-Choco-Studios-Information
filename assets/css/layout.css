@@ -1,0 +1,27 @@
+.site-shell { min-height: 100vh; }
+.container { width: min(var(--content), calc(100% - 48px)); margin: 0 auto; }
+.topbar {
+  position: sticky; top: 0; z-index: 20; height: 72px; display: flex; align-items: center;
+  border-bottom: 1px solid var(--border); background: rgba(8,11,20,.86); backdrop-filter: blur(18px);
+}
+.topbar-inner { width: min(var(--content), calc(100% - 48px)); margin: auto; display: flex; align-items: center; gap: 32px; }
+.brand { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; }
+.brand-copy { display: flex; flex-direction: column; gap: 3px; }
+.brand-name { font-size: 14px; font-weight: 760; letter-spacing: -.35px; }
+.brand-sub { color: var(--muted); font-size: 10px; }
+.nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+.menu-toggle { display: none; width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 11px; background: rgba(255,255,255,.025); cursor: pointer; }
+.hero {
+  position: relative; min-height: 590px; display: flex; align-items: center; padding: 90px 0 82px;
+  background: radial-gradient(ellipse at 75% 22%, rgba(95,91,220,.15), transparent 36%), radial-gradient(ellipse at 14% 5%, rgba(66,110,220,.12), transparent 35%);
+  border-bottom: 1px solid var(--border);
+}
+.hero-content { position: relative; z-index: 1; max-width: 760px; }
+.section { padding: 86px 0; border-bottom: 1px solid var(--border); }
+.section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+.overview-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+.product-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+.section-placeholder { display: grid; grid-template-columns: minmax(0,1fr) minmax(220px,.65fr); gap: 28px; align-items: center; padding: 30px; border: 1px solid var(--border); border-radius: 18px; background: radial-gradient(ellipse at 100% 0%, rgba(95,91,220,.09), transparent 45%), rgba(255,255,255,.015); }
+.contact-panel { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 30px; border: 1px solid rgba(125,145,255,.2); border-radius: 18px; background: linear-gradient(115deg, rgba(89,119,255,.09), rgba(153,91,255,.065)); }
+footer { padding: 27px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
