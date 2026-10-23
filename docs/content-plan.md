@@ -19,6 +19,8 @@ Dokumen kerja untuk melengkapi pusat informasi. Konten publik hanya diperbarui s
 - Pasar kedua: Asia. Tombol ganti bahasa direncanakan untuk tahap berikutnya.
 - Catatan rilis menggunakan tanggal dan daftar perubahan; sumber status rilis adalah pendiri TCS.
 - Struktur menu, komponen, data produk, dan bank pertanyaan dipisahkan; pemeriksaan integritas statis tersedia di `scripts/validate-site.mjs`.
+- Situs menampilkan panel diagnostik di browser untuk error JavaScript, Promise yang gagal, aset gagal dimuat, HTTP 4xx/5xx, serta kegagalan koneksi tanpa respons. Detailnya ditampilkan di panel dan konsol browser; tidak ada telemetri error otomatis ke server.
+- Karena TCS Information adalah situs statis, detail respons HTTP yang terlihat dari browser tidak sama dengan akses ke log server. Log hosting/CDN atau fungsi backend harus diperiksa secara terpisah lewat dashboard penyedia.
 - Katalog situs membaca data statis dari `data/products.js`; belum ada sinkronisasi otomatis katalog dengan Choco AI.
 
 ## Perlu diverifikasi atau dilengkapi
