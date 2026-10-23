@@ -53,6 +53,7 @@ const requiredFiles = [
   "assets/css/diagnostics.css",
   "assets/css/responsive.css",
   "assets/js/diagnostics.js",
+  "assets/js/diagnostics.js",
   "assets/js/main.js",
   "assets/js/menu.js",
   "assets/js/features/catalog.js",
