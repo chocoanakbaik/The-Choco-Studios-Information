@@ -12,6 +12,8 @@ Dokumen kerja untuk melengkapi pusat informasi. Konten publik hanya diperbarui s
 - KasirKita dan Chocobot Guardian dalam pengembangan; rincian status rilis Privacy Guardian masih perlu diverifikasi.
 - Sebagian produk berbayar dan sebagian gratis. Dua proyek internal dirahasiakan.
 - Choco AI menggunakan Groq untuk pemrosesan model dan menampilkan iklan Adsterra.
+- Source Choco AI mengatur penyimpanan profil akun, judul percakapan, isi pesan, dan catatan memori pada Supabase. Source juga memiliki alur ekstraksi kandidat memori berbasis Groq setelah pasangan pesan akun berhasil disimpan.
+- Migrasi source mengaktifkan Row Level Security untuk membatasi data akun menurut pemilik, tetapi perilaku konfigurasi produksi belum diperiksa melalui situs live.
 - Kanal kontak mencakup email, telepon, dan Google Form yang dikonfigurasi di `data/site.js`. Waktu respons yang disampaikan adalah paling lama 3 hari.
 - Hak cipta ditampilkan; penjualan ulang hanya sesuai versi/lisensi yang memang diizinkan.
 - Pasar kedua: Asia. Tombol ganti bahasa direncanakan untuk tahap berikutnya.
@@ -20,7 +22,9 @@ Dokumen kerja untuk melengkapi pusat informasi. Konten publik hanya diperbarui s
 
 ## Perlu diverifikasi atau dilengkapi
 - Apakah Google Form masih aktif dan dapat dipakai oleh publik.
-- Rincian penyimpanan riwayat percakapan dan memori akun Choco AI.
+- Perilaku produksi untuk riwayat chat dan ekstraksi/simpan memori akun Choco AI.
+- Kebijakan retensi dan alur penghapusan mandiri profil, percakapan, pesan, dan memori.
+- Data yang diproses jaringan iklan dan penyedia pihak ketiga lain.
 - Fitur serta status rilis final produk yang masih dikembangkan.
 - Syarat penggunaan dan kebijakan privasi umum/per produk.
 - Ketentuan lisensi, distribusi, refund, garansi, dan dukungan produk berbayar.
