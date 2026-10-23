@@ -22,7 +22,7 @@ function walkFiles(dir, extensions) {
   if (!existsSync(fullDir)) return [];
   const results = [];
   for (const item of readdirSync(fullDir, { withFileTypes: true })) {
-    if (item.name === ".git" || item.name === "node_modules") continue;
+    if (item.name === ".git" || item.name === "node_modules" || item.name === "dist" || item.name === ".netlify") continue;
     const relative = path.posix.join(dir, item.name);
     if (item.isDirectory()) results.push(...walkFiles(relative, extensions));
     else if (extensions.some(extension => item.name.endsWith(extension))) results.push(relative);
@@ -40,8 +40,12 @@ const requiredFiles = [
   "favicon.svg",
   "robots.txt",
   "_headers",
+  "netlify.toml",
+  ".gitignore",
   "package.json",
   "README.md",
+  "scripts/build-site.mjs",
+  "scripts/validate-site.mjs",
   ".github/workflows/validate-site.yml",
   "components/header.html",
   "components/hero.html",
@@ -98,6 +102,9 @@ for (const file of requiredFiles) {
 if (failures.length === 0) pass(`${requiredFiles.length} file wajib tersedia`);
 
 const index = read("index.html");
+const packageJson = read("package.json");
+const netlifyConfig = read("netlify.toml");
+const buildScript = read("scripts/build-site.mjs");
 const custom404 = read("404.html");
 const robots = read("robots.txt");
 const headers = read("_headers");
@@ -110,6 +117,26 @@ const header = read("components/header.html");
 const responsive = read("assets/css/responsive.css");
 const componentStyles = read("assets/css/components.css");
 const menu = read("assets/js/menu.js");
+
+if (!netlifyConfig.includes('command = "npm run build"') ||
+    !netlifyConfig.includes('publish = "dist"')) {
+  fail("netlify.toml harus menjalankan build dan menerbitkan folder dist");
+}
+if (!packageJson.includes('"build": "node scripts/build-site.mjs"')) {
+  fail("package.json belum menyediakan perintah build produksi");
+}
+for (const token of [
+  '"index.html"', '"404.html"', '"favicon.svg"', '"robots.txt"', '"_headers"',
+  '"assets"', '"components"', '"data"', '"products"',
+  '"README.md"', '"docs"', '"scripts"', '".github"'
+]) {
+  if (!buildScript.includes(token)) fail("Daftar salin/pengecualian build tidak memiliki token yang diharapkan: " + token);
+}
+if (!buildScript.includes("BUILD LULUS") ||
+    !buildScript.includes("File/ folder internal tidak boleh masuk hasil deploy")) {
+  fail("Build produksi belum memeriksa kelengkapan output dan pengecualian file internal");
+}
+if (failures.length === 0) pass("Konfigurasi Netlify dan batas file produksi diperiksa");
 
 if (!/<html\s+lang="id"/i.test(index)) fail("index.html harus menetapkan Bahasa Indonesia sebagai bahasa utama");
 if (!/<title>[^<]+<\/title>/i.test(index)) fail("Judul halaman tidak ditemukan");
