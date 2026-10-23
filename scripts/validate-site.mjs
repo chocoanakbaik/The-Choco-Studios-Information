@@ -104,14 +104,14 @@ const hasMeta = key => new RegExp(`<meta\\s+(?:name|property)="${key}"\\s+conten
 for (const key of ["og:site_name", "og:title", "og:description", "og:type", "og:locale", "twitter:card", "twitter:title", "twitter:description"]) {
   if (!hasMeta(key)) fail(`Metadata pratinjau tautan tidak ditemukan: ${key}`);
 }
-if (!/<link\\s+rel="icon"\\s+type="image\\/svg\\+xml"\\s+href="favicon\\.svg"/i.test(index)) {
+if (!index.includes('<link rel="icon" type="image/svg+xml" href="favicon.svg">')) {
   fail("Favicon SVG tidak ditautkan dari index.html");
 }
-if (!/<title>[^<]*404[^<]*<\\/title>/i.test(custom404) ||
-    !/<h1>Halaman tidak ditemukan<\\/h1>/i.test(custom404) ||
-    !/href="\\/"/.test(custom404) ||
-    !/href="\\/favicon\\.svg"/.test(custom404) ||
-    !/name="robots" content="noindex,follow"/.test(custom404)) {
+if (!custom404.includes("<title>404 — Halaman Tidak Ditemukan | The Choco Studios</title>") ||
+    !custom404.includes("<h1>Halaman tidak ditemukan</h1>") ||
+    !custom404.includes('<a class="primary" href="/">Kembali ke beranda</a>') ||
+    !custom404.includes('href="/favicon.svg"') ||
+    !custom404.includes('name="robots" content="noindex,follow"')) {
   fail("Halaman 404 harus punya judul, pesan, ikon, tombol kembali, dan noindex");
 }
 for (const header of ["X-Content-Type-Options: nosniff", "Referrer-Policy: strict-origin-when-cross-origin", "X-Frame-Options: DENY", "Permissions-Policy: camera=(), microphone=(), geolocation=()"]) {
