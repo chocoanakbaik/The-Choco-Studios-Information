@@ -1,6 +1,7 @@
 import { initMenu } from "./menu.js";
 import { renderCatalog } from "./features/catalog.js";
 import { renderMissions } from "./features/missions.js";
+import { applySiteLinks } from "./features/links.js";
 import { products } from "../../data/products.js";
 import { site } from "../../data/site.js";
 
@@ -33,6 +34,7 @@ try {
   initMenu();
   renderCatalog(products);
   renderMissions(site.missions);
+  applySiteLinks(site);
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 } catch (error) {
