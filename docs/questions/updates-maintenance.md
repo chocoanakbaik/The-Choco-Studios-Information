@@ -4,6 +4,7 @@
 - [x] Catatan rilis memakai format tanggal dan daftar perubahan.
 - [x] Sumber resmi status serta tanggal rilis adalah pendiri TCS.
 - [x] Konten publik hanya boleh diperbarui berdasarkan fakta yang dikonfirmasi.
+- [x] GitHub Actions menjalankan pemeriksaan integritas situs saat push ke `main` dan pull request. Pemeriksaan ini mencakup struktur serta referensi internal, bukan ketersediaan URL eksternal.
 
 ## Menunggu konfirmasi
 - [ ] **OPS-01:** Seberapa sering halaman produk dan tautan resmi ditinjau?
@@ -14,7 +15,6 @@
 ## Pertanyaan masa depan
 - [NANTI] **OPS-05:** Apakah diperlukan halaman status produk dan layanan?
 - [NANTI] **OPS-06:** Apakah ada target ketersediaan atau waktu respons untuk layanan daring?
-- [NANTI] **OPS-07:** Apakah pemeriksaan tautan dan berkas otomatis perlu dijalankan saat perubahan masuk ke GitHub?
 
 ## Sumber yang perlu disinkronkan
 - `components/updates.html`
