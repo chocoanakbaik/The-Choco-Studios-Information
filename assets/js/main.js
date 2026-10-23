@@ -3,6 +3,7 @@ import { applySiteContent } from "./features/site-content.js";
 import { renderCatalog } from "./features/catalog.js";
 import { renderMissions } from "./features/missions.js";
 import { renderNavigation } from "./features/navigation.js";
+import { initActiveNavigation } from "./features/active-navigation.js";
 import { applySiteLinks } from "./features/links.js";
 import { products } from "../../data/products.js";
 import { navigation } from "../../data/navigation.js";
@@ -45,6 +46,7 @@ try {
   applySiteContent(site);
   renderNavigation(navigation);
   initMenu();
+  initActiveNavigation();
   renderCatalog(products);
   renderMissions(site.missions);
   applySiteLinks(site);
