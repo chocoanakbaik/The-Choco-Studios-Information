@@ -41,7 +41,7 @@
       <div>
         <p class="detail-eyebrow">Proyek · Privasi Windows</p>
         <h1 id="project-title">Privacy Guardian</h1>
-        <p class="detail-lead">Konsep aplikasi desktop Windows yang dirancang untuk membantu pengguna memahami dokumen kebijakan melalui analisis yang terstruktur. Status rilis dan fitur final masih perlu dikonfirmasi.</p>
+        <p class="detail-lead">Privacy Guardian sedang dibangun sebagai MVP desktop Windows untuk memeriksa teks kebijakan secara lokal, menandai pola yang relevan, dan menampilkan kutipan serta nomor baris sumber. MVP ini menggunakan aturan pola, bukan AI semantik, dan belum dirilis untuk publik.</p>
         <div class="detail-status-line">
           <span class="detail-status-badge is-pending">Detail menyusul</span>
           <span class="detail-release-note">Informasi rilis belum dikonfirmasi.</span>
@@ -60,27 +60,27 @@
     <section class="detail-section" id="overview" aria-labelledby="overview-title">
       <p class="detail-kicker">Gambaran konsep</p>
       <h2 id="overview-title">Membantu memahami dokumen kebijakan</h2>
-      <p>Konsep yang tercatat saat ini mencakup bantuan untuk memahami Privacy Policy, Terms of Service, Cookie Policy, dan dokumen kebijakan terkait. Analisis akhir, batas penggunaan, format masukan, serta dukungan dokumen belum diumumkan sebagai fitur final.</p>
+      <p>MVP internal saat ini dapat menerima teks tempel atau membuka TXT, Markdown, dan HTML, lalu menandai pola terkait pengumpulan/penggunaan/pembagian data, retensi, pelacakan, hak pengguna, pengecualian, dan transfer lintas negara. Setiap temuan menampilkan bukti dari teks dan nomor baris serta dapat diekspor ke CSV atau TXT.</p>
       <div class="detail-columns">
         <article class="detail-info-card">
           <h3>Dokumen yang menjadi fokus konsep</h3>
           <ul class="detail-list">
-            <li>Privacy Policy.</li>
-            <li>Terms of Service.</li>
-            <li>Cookie Policy dan dokumen kebijakan terkait.</li>
+            <li>Pemeriksaan teks kebijakan yang ditempel atau dibuka dari file TXT/MD/HTML (hingga 5 MB).</li>
+            <li>Temuan dengan kategori, potongan bukti, nomor baris, dan alasan penandaan.</li>
+            <li>Ekspor daftar temuan ke CSV atau laporan TXT.</li>
           </ul>
         </article>
         <article class="detail-info-card">
           <h3>Platform yang dituju</h3>
-          <p>Aplikasi desktop Windows. Persyaratan sistem, ketersediaan, versi, dan cara distribusi belum dikonfirmasi.</p>
+          <p>Aplikasi Windows dengan .NET 8. Installer, persyaratan minimum, kompatibilitas perangkat, lisensi, dan distribusi final belum disahkan.</p>
         </article>
       </div>
     </section>
     <section class="detail-section" aria-labelledby="status-title">
       <p class="detail-kicker">Status dan batas informasi</p>
-      <h2 id="status-title">Konsep, bukan pengumuman rilis</h2>
+      <h2 id="status-title">MVP internal, belum menjadi rilis publik</h2>
       <p>Halaman ini menerangkan konsep yang sudah dicatat dan tidak menandai aplikasi sebagai rilis tersedia. Fitur final dan status rilis perlu dikonfirmasi sebelum informasi lebih lengkap dipublikasikan.</p>
-      <div class="detail-note">Jangan menyimpulkan kemampuan, tingkat akurasi, atau tanggal rilis dari ringkasan konsep ini. Informasi akan diperluas setelah detail proyek diverifikasi.</div>
+      <div class="detail-note">Analisis berbasis pola dapat melewatkan istilah atau menandai kalimat yang sebenarnya biasa. Ini bukan nasihat hukum, bukan label aman/tidak aman, dan tidak menggantikan pembacaan dokumen asli. PDF, DOCX, OCR, pengambilan URL otomatis, serta analisis semantik belum tersedia.</div>
     </section>
   </main>
   <footer class="detail-footer">
