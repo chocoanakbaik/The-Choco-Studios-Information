@@ -1,6 +1,6 @@
 # The Choco Studios Information
 
-Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan JavaScript modular tanpa framework. Build Node.js kecil menyiapkan bundel deploy terpisah agar file dokumentasi internal tidak ikut diterbitkan di Netlify.
+Situs informasi publik untuk ekosistem brand The Choco Corporation, dengan The Choco Studios (TCS) sebagai studio kreatif di bawah identitas payung tersebut. Proyek dikembangkan secara mandiri oleh satu solo developer; nama brand bukan klaim badan hukum. Situs dibuat dengan HTML, CSS, dan JavaScript modular tanpa framework. Build Node.js menyiapkan bundel deploy terpisah agar dokumentasi internal tidak ikut diterbitkan.
 
 ## Struktur proyek
 
@@ -79,6 +79,7 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 
 - `index.html`: metadata halaman, Open Graph/Twitter untuk pratinjau tautan, favicon, stylesheet, landmark utama, dan titik pemasangan komponen. Tidak menampung seluruh konten, CSS, atau JavaScript.
 - `favicon.svg`: identitas grafis TCS pada tab browser dan daftar bookmark.
+- `data/site.js`: identitas payung `The Choco Corporation`, studio kreatif `The Choco Studios`, dan kanal informasi yang digunakan bersama oleh halaman publik.
 - `404.html`: halaman tidak ditemukan yang berdiri sendiri, dengan navigasi kembali ke beranda dan kanal pelaporan tautan rusak; tidak bergantung pada JavaScript aplikasi.
 - `_headers`: header keamanan dasar untuk deploy Netlify, termasuk MIME sniffing, kebijakan referrer, pencegahan framing, serta pembatasan izin browser.
 - `netlify.toml`: menjalankan `npm run build` dan menetapkan `dist/` sebagai direktori publik.

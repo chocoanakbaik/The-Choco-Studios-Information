@@ -1,6 +1,9 @@
 export const site = {
+  parentOrganization: "The Choco Corporation",
+  parentRole: "Identitas payung ekosistem brand",
   brand: "The Choco Studios",
   shortName: "TCS",
+  brandRole: "Studio kreatif di bawah The Choco Corporation",
   tagline: "Pusat Informasi",
   email: "thechocostudio@gmail.com",
   phoneDisplay: "085150835618",
