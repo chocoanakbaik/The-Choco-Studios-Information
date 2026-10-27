@@ -9,6 +9,7 @@ const publicFiles = [
   "404.html",
   "favicon.svg",
   "robots.txt",
+  "sitemap.xml",
   "_headers"
 ];
 
@@ -75,5 +76,5 @@ const htmlPages = [
 const htmlCount = htmlPages.filter(file => existsSync(path.join(output, file))).length;
 
 console.log(`BUILD LULUS: ${requiredOutput.length} path wajib tersedia; ${htmlCount} halaman HTML utama terbit.`);
-console.log("Isi deploy: assets, components, data, products, index, 404, favicon, robots, dan headers.");
+console.log("Isi deploy: assets, components, data, products, index, 404, favicon, robots, sitemap, dan headers.");
 console.log("Dokumentasi, bank pertanyaan, script validasi, dan konfigurasi build tidak ikut diterbitkan.");
