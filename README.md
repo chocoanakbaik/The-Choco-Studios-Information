@@ -112,7 +112,7 @@ Situs informasi publik The Choco Studios (TCS), dibuat dengan HTML, CSS, dan Jav
 
 ## SEO dan penemuan crawler
 
-Halaman utama menggunakan judul dan deskripsi yang menjelaskan nama lengkap studio serta pendirinya, canonical URL ke alamat publik Netlify, dan metadata Open Graph/Twitter. `robots.txt` mengizinkan crawler umum mengakses halaman publik dan menunjuk ke sitemap. Sitemap hanya mencantumkan beranda dan empat halaman detail produk yang ada. Sitemap dan robots.txt disalin ke folder `dist/` oleh build produksi.
+Halaman utama menggunakan judul dan deskripsi yang menjelaskan nama lengkap studio serta pendirinya, canonical URL ke alamat publik Netlify, dan metadata Open Graph/Twitter. `robots.txt` mengizinkan crawler umum mengakses halaman publik dan menunjuk ke sitemap. Sitemap mencantumkan beranda dan seluruh 16 halaman detail produk/proyek yang terhubung ke katalog publik. Deskripsi katalog membedakan layanan yang tersedia dari proyek yang masih dikembangkan. Sitemap dan robots.txt disalin ke folder `dist/` oleh build produksi.
 
 Sitemap membantu mesin pencari menemukan URL, tetapi tidak menjamin semua URL akan diindeks atau mendapat peringkat tertentu. Setelah deploy, periksa alamat `/robots.txt` dan `/sitemap.xml` melalui browser, lalu kirim sitemap di Google Search Console saat properti terverifikasi. Untuk pengindeksan manual, gunakan Request Indexing secara wajar; kuota inspeksi URL terpisah dari pengiriman sitemap.
 
