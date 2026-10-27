@@ -51,6 +51,7 @@ const requiredFiles = [
   "products/tcs-complete-umkm-suite.html",
   "favicon.svg",
   "robots.txt",
+  "sitemap.xml",
   "_headers",
   "netlify.toml",
   ".gitignore",
@@ -150,7 +151,7 @@ if (!packageJson.includes('"build": "node scripts/build-site.mjs"')) {
   fail("package.json belum menyediakan perintah build produksi");
 }
 for (const token of [
-  '"index.html"', '"404.html"', '"favicon.svg"', '"robots.txt"', '"_headers"',
+  '"index.html"', '"404.html"', '"favicon.svg"', '"robots.txt"', '"sitemap.xml"', '"_headers"',
   '"assets"', '"components"', '"data"', '"products"',
   '"README.md"', '"docs"', '"scripts"', '".github"'
 ]) {
