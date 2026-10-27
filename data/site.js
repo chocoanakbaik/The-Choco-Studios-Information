@@ -6,7 +6,7 @@ export const site = {
   phoneDisplay: "085150835618",
   phoneUrl: "tel:+6285150835618",
   linkedinUrl: "https://www.linkedin.com/in/hasby-prasetya-tcs/",
-  chocoAiUrl: "https://choco-ai-platform.netlify.app/",
+  chocoAiUrl: "https://aikepribadian.vercel.app/",
   helpCenterUrl: "https://choco-ai-help-center.netlify.app/",
   contactFormUrl: "https://forms.gle/LUtY9cyFQKVizA1A6",
   languages: {
