@@ -37,8 +37,21 @@ const requiredFiles = [
   "products/kasirkita.html",
   "products/chocobot-guardian.html",
   "products/privacy-guardian.html",
+  "products/choco-ai-help-center.html",
+  "products/chocoscan.html",
+  "products/tcs-umkm-stock-sales-tracker.html",
+  "products/tcs-business-document-kit.html",
+  "products/tcs-professional-cv-kit.html",
+  "products/tcs-social-media-business-kit.html",
+  "products/tcs-business-presentation-kit.html",
+  "products/tcs-finance-cashflow-pro.html",
+  "products/tcs-umkm-website-kit.html",
+  "products/tcs-admin-dashboard-ui-kit.html",
+  "products/tcs-business-management-system.html",
+  "products/tcs-complete-umkm-suite.html",
   "favicon.svg",
   "robots.txt",
+  "sitemap.xml",
   "_headers",
   "netlify.toml",
   ".gitignore",
@@ -93,7 +106,19 @@ const productPageFiles = [
   "products/choco-ai.html",
   "products/kasirkita.html",
   "products/chocobot-guardian.html",
-  "products/privacy-guardian.html"
+  "products/privacy-guardian.html",
+  "products/choco-ai-help-center.html",
+  "products/chocoscan.html",
+  "products/tcs-umkm-stock-sales-tracker.html",
+  "products/tcs-business-document-kit.html",
+  "products/tcs-professional-cv-kit.html",
+  "products/tcs-social-media-business-kit.html",
+  "products/tcs-business-presentation-kit.html",
+  "products/tcs-finance-cashflow-pro.html",
+  "products/tcs-umkm-website-kit.html",
+  "products/tcs-admin-dashboard-ui-kit.html",
+  "products/tcs-business-management-system.html",
+  "products/tcs-complete-umkm-suite.html"
 ];
 
 for (const file of requiredFiles) {
@@ -126,7 +151,7 @@ if (!packageJson.includes('"build": "node scripts/build-site.mjs"')) {
   fail("package.json belum menyediakan perintah build produksi");
 }
 for (const token of [
-  '"index.html"', '"404.html"', '"favicon.svg"', '"robots.txt"', '"_headers"',
+  '"index.html"', '"404.html"', '"favicon.svg"', '"robots.txt"', '"sitemap.xml"', '"_headers"',
   '"assets"', '"components"', '"data"', '"products"',
   '"README.md"', '"docs"', '"scripts"', '".github"'
 ]) {
